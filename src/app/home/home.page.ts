@@ -9,4 +9,6 @@ export class HomePage {
 
   constructor() {}
 
+  src = "https://sonatel.sn/wp-content/uploads/2017/05/Logo-Orange_1234_mediatheque-lightbox.jpg"
+
 }

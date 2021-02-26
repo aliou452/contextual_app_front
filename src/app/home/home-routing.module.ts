@@ -6,7 +6,12 @@ const routes: Routes = [
   {
     path: '',
     component: HomePage,
+  },
+  {
+    path: 'starting',
+    loadChildren: () => import('./starting/starting.module').then( m => m.StartingPageModule)
   }
+
 ];
 
 @NgModule({

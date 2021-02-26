@@ -8,7 +8,7 @@
 </ion-header>
 
 <ion-content>
-  
+
   <div class="ion-padding-top"></div>
 
   <ion-grid class="ion-padding-top">
@@ -40,9 +40,21 @@
     <ion-row>
       <ion-col size="2"></ion-col>
       <ion-col >
-        <ion-item color="primary" lines="none" button="true" type="button">
+        <ion-item color="primary" lines="none" button="true" type="button" [routerLink]="['/login']">
           <ion-label class="ion-text-center">
             Se connecter
+          </ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col size="2"></ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="2"></ion-col>
+      <ion-col>
+        <ion-item color="primary" lines="none" button="true" type="button">
+          <ion-label class="ion-text-center">
+            S'inscrire
           </ion-label>
         </ion-item>
       </ion-col>
@@ -52,14 +64,12 @@
     <ion-row class="ion-padding-vertical"></ion-row>
 
     <ion-row class="ion-justify-content-around">
-      <ion-col></ion-col>
-       <ion-col size="11">
-         <ion-item lines="none" type="button" button="true">
+       <ion-col size="12">
+         <ion-item lines="none" type="button" button="true" detail="false">
            <ion-icon name="arrow-forward-outline" slot="end" color="primary"></ion-icon>
             <ion-label class="ion-text-center">Code secret oublié?<br><span class="code">Réinitialiser mon code</span></ion-label>
          </ion-item>
         </ion-col>
-      <ion-col></ion-col>
     </ion-row>
   </ion-grid>
 

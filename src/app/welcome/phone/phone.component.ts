@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 
 @Component({
@@ -8,7 +8,9 @@ import { ModalController } from '@ionic/angular';
 })
 export class PhoneComponent implements OnInit {
 
-  numero: number;
+  @Input() tel:string;
+  code: string;
+
   constructor(public modalCtrl: ModalController) { }
 
   ngOnInit() {}
@@ -17,7 +19,7 @@ export class PhoneComponent implements OnInit {
     // using the injected ModalController this page
     // can "dismiss" itself and optionally pass back data
     this.modalCtrl.dismiss({
-      'numero': this.numero
+      "code": this.code
     });
   }
 

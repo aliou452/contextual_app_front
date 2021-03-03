@@ -25,10 +25,10 @@ export class WelcomePage implements OnInit {
       component: PhoneComponent,
       cssClass: 'my-custom-class'
     });
-
     await modal.present();
     const { data } = await modal.onWillDismiss();
-    console.log(data)
+    this.numero = data.numero
+    console.log(this.numero)
     return
   }
 

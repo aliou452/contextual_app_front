@@ -1,17 +1,31 @@
-<ion-content fullscreen>
+<ion-content fullscreen class="ion-padding" scroll-y="false">
   <ion-slides pager="true" [options]="slideOpts">
     <ion-slide>
-      <ion-item>
+      <div class="slide">
         <ion-img [src]="src1"></ion-img>
-      </ion-item>
+        <h2>Bienvenue</h2>
+        <p>L'application <b>Orange Money pour distributeurs</b> vient en aide aux distributeurs dans le cadre de la digitalisation (en marche) de nos services.</p>
+      </div>
+    </ion-slide>
+    <ion-slide>
+      <div class = "slide">
+        <ion-img [src]="src2"></ion-img>
+        <h2>Données mobiles</h2>
+        <p>N'oubliez pas d'activer vos <b>données mobiles</b> pour pouvoir profiter pleinement de nos services.</p>
+      </div>
     </ion-slide>
     <ion-slide>
       <ion-item>
-        <ion-img [src]="src1"></ion-img>
+        <ion-img [src]="src3"></ion-img>
       </ion-item>
-      <ion-item>
+      <!-- <ion-item>
         <ion-icon name="arrow-forward-outline" [routerLink]="['/phone']"></ion-icon>
-      </ion-item>
+      </ion-item> -->
     </ion-slide>
   </ion-slides>
+  <ion-row>
+    <ion-col>
+      <ion-button type="submit" color="primary" expand="block" [routerLink]="['/home/starting']" strong>Démarrer</ion-button>
+    </ion-col>
+  </ion-row>
 </ion-content>

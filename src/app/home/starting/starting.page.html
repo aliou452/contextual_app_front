@@ -1,4 +1,29 @@
-<ion-header>
+<div id="main-menu">
+  <ion-header [translucent]="true">
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <ion-title>
+        Bienvenue M. SY
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content>
+    <ion-list lines="none">
+      <ion-item>
+        <ion-label>
+          <h2 class='strong'>Ma solde</h2>
+          <p>2959495 fcfa</p>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+
+  </ion-content>
+</div>
+
+<!-- <ion-header>
 
   <ion-toolbar>
     <ion-title size = "large" style="text-align: center;">Bienvenue M. SY</ion-title>
@@ -13,13 +38,29 @@
       </button>
     </ion-navbar>
   </ion-toolbar>
-</ion-header>
+</ion-header> -->
 
-<ion-content>
-  <ion-item>
-    <ion-label>
-      <h2 class='strong'>Ma solde</h2>
-      <p>2959495 fcfa</p>
-    </ion-label>
-  </ion-item>
-</ion-content>
+<ion-menu contentId="main-menu">
+  <ion-header>
+    <ion-toolbar color="primary">
+      <ion-title>Start Menu</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
+    <ion-list>
+      <ion-item>
+        <ion-label>Bonjour</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label>Bonjour</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label>Bonjour</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label>Bonjour</ion-label>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+
+</ion-menu>

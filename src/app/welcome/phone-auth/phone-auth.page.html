@@ -1,9 +1,23 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>phoneAuth</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content>
+  <ion-card>
+    <ion-list lines="none">
+      <ion-item padding>
+        <ion-icon slot="end" color="danger" [routerLink]="['/']" name="close-circle-outline"></ion-icon>
+      </ion-item>
+      <ion-item padding>
+        <ion-label position="stacked">
+          Mon numéro OM
+        </ion-label>
+        <ion-input [(ngModel)]="numero" placeholder="77 777 77 77">
+        </ion-input>
+      </ion-item>
+      <ion-item padding>
+        <ion-button color="primary" (click)="sendLoginCode()">
+          Soumettre
+        </ion-button>
+      </ion-item>
+    </ion-list>
+  </ion-card>
+  <div id="recaptcha-container"></div>
 
 </ion-content>

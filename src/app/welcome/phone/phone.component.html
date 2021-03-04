@@ -1,0 +1,27 @@
+<div class="ion-page">
+  <ion-card>
+    <ion-list lines="none">
+      <ion-item padding>
+        <ion-icon slot="end" color="danger" (click)="dismiss()" name="close-circle-outline"></ion-icon>
+      </ion-item>
+      <ion-item padding>
+        <ion-label position="stacked">
+          Entrez le code reçu par sms
+        </ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-input [(ngModel)]="code" placeholder=">Ex: 232425"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">
+          SMS envoyé au n°{{tel}}
+        </ion-label>
+      </ion-item>
+      <ion-item padding>
+        <ion-button color="primary" (click)="dismiss()">
+          Soumettre
+        </ion-button>
+      </ion-item>
+    </ion-list>
+  </ion-card>
+</div>

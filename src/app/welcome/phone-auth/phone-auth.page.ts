@@ -5,6 +5,7 @@ import { WindowService } from 'src/app/shared/services/window.service';
 import { PhoneComponent } from '../phone/phone.component';
 import { AngularFireAuth } from "@angular/fire/auth";
 import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-phone-auth',
   templateUrl: './phone-auth.page.html',

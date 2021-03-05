@@ -8,13 +8,10 @@ import { MenuController } from '@ionic/angular';
 })
 export class StartingPage implements OnInit {
 
-  constructor(public menuCtrl: MenuController) { }
+  constructor() { }
 
   ngOnInit() {
   }
 
-  openMenu(){
-    this.menuCtrl.open()
-  }
 
 }

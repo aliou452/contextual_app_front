@@ -34,11 +34,6 @@ export class NativeHttpInterceptor implements HttpInterceptor {
 
       const method = <HttpMethod> request.method.toLowerCase();
 
-      console.log('— Request url');
-      console.log(request.url)
-      console.log('— Request body');
-      console.log(request.body);
-
       const nativeHttpResponse = await this.nativeHttp.sendRequest(request.url, {
         method: method,
         data: request.body,
@@ -61,15 +56,9 @@ export class NativeHttpInterceptor implements HttpInterceptor {
         url: nativeHttpResponse.url,
       });
 
-      console.log("— Response success")
-      console.log(response);
-
       return Promise.resolve(response);
     } catch (error) {
       if (!error.status) { return Promise.reject(error); }
-
-      console.log("— Response error")
-      console.log(error);
 
       const response = new HttpResponse({
         body: JSON.parse(error.error),

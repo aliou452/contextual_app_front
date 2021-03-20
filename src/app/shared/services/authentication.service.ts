@@ -1,10 +1,13 @@
 import { Injectable } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { NavController } from '@ionic/angular';
-import { ReplaySubject } from 'rxjs';
+import { Observable, ReplaySubject } from 'rxjs';
+import { tap } from "rxjs/operators";
 import { environment } from 'src/environments/environment';
 import { HTTP } from "@ionic-native/http/ngx";
 import { HttpClient } from '@angular/common/http';
+import { AuthResponse } from '../models/auth-response';
+import { User } from '../models/user';
 
 @Injectable({
   providedIn: 'root'
@@ -47,6 +50,22 @@ export class AuthenticationService {
       }
     }
 
+  getUser(): Observable<Object>{
+    return this.httpClient.get(`${environment.serverURL}/api/v1/info`)
+      .pipe(tap(
+          response => {
+            const user = JSON.parse(JSON.stringify(response))
+            // const authResponse = new AuthResponse()
+            // console.log(user["fisrtName"])
+            // authResponse.firstName = user["firstName"]
+            // authResponse.lastName = user["lastName"]
+            // authResponse.number = user["number"]
+            // console.log("User: ")
+            // console.log([user["firstName"], user["lastName"], user["number"]])
+        return [user["firstName"], user["lastName"], user["number"]];
+      }))
+  }
+
   logout(): void {
     localStorage.removeItem(this.jwtTokenName);
     this.authUser.next(null);
@@ -73,7 +92,6 @@ export class AuthenticationService {
   }
 
   private handleJwtResponse(jwt: string): string {
-    console.log("jwt: ", jwt)
     localStorage.setItem(this.jwtTokenName, jwt);
     this.authUser.next(jwt);
     this.navCtrl.navigateRoot("/home/start")

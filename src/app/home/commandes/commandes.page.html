@@ -1,0 +1,75 @@
+<!-- <ion-header>
+  <ion-toolbar>
+    <ion-title>commandes</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+</ion-content> -->
+
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Commandes</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home/dashboard"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+	  <ion-card>
+      <ion-card-header>
+            Débit
+      </ion-card-header>     
+    </ion-card>
+
+    <ion-card>
+    	  <ion-grid>
+    	  	       <ion-row>
+						  <ion-col style="background-color:hsl(22, 96%, 50%)">
+						    <ion-label>Date</ion-label>
+						  </ion-col>
+						  <ion-col style="background-color:hsl(22, 96%, 50%)">
+						    <ion-label>Montant</ion-label>
+						  </ion-col>
+						  <ion-col style="background-color:hsl(22, 96%, 50%)">
+						    <ion-label>Statut</ion-label>
+						  </ion-col>
+						  <!-- <ion-col style="background-color:#FF0000">
+						      
+								   <ion-label>
+								    Action
+								   </ion-label>
+						   </ion-col> -->
+				    </ion-row>
+				  <ion-row *ngFor ="let each of receive">
+						  <ion-col>
+						    <ion-label>{{each.phone_no}}</ion-label>
+						  </ion-col>
+						  <ion-col>
+						    <ion-label>{{each.amount}}</ion-label>
+						  </ion-col>
+						  <ion-col>
+						    <ion-label>{{each.status}}</ion-label>
+						  </ion-col>
+						  <ion-col>
+						       <ion-item *ngIf="each.status=='pending'" button (click)="releaseMoney(each)" class="primary">
+								   <ion-label>
+								    Release
+								   </ion-label>
+							   </ion-item>
+						   </ion-col>
+				    </ion-row>
+			</ion-grid>
+    </ion-card>
+
+    <ion-button expand="block" routerLink="/home/commandes" routerDirection="root">Commander</ion-button>
+    
+
+</ion-content>

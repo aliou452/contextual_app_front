@@ -33,18 +33,33 @@
   <ion-content>
     <ion-list>
       <ion-item>
-        <ion-icon name="cash"></ion-icon>
-        <ion-label> Consulter Solde</ion-label>
+        <ion-icon name="bar-chart"></ion-icon>
+        <ion-button  color="primary" expand="block" [routerLink]="['/home/dashboard']" strong>
+          <ion-label> dashboard</ion-label>
+        </ion-button>
       </ion-item>
+
       <ion-item>
-        <ion-label>Bonjour</ion-label>
+        <ion-icon name="alert-outline"></ion-icon>
+        <ion-button  color="primary" expand="block" [routerLink]="['/home/dashboard']" strong>
+          <ion-label> Faire une réclamation</ion-label>
+        </ion-button>
       </ion-item>
+
       <ion-item>
-        <ion-label>Bonjour</ion-label>
+        <ion-icon name="construct-outline"></ion-icon>
+        <ion-button  color="primary" expand="block" [routerLink]="['/home/dashboard']" strong>
+          <ion-label> paramètres</ion-label>
+        </ion-button>
       </ion-item>
+
       <ion-item>
-        <ion-label>Bonjour</ion-label>
+        <ion-icon name="information-circle-outline"></ion-icon>
+        <ion-button  color="primary" expand="block" [routerLink]="['/home/dashboard']" strong>
+          <ion-label> A propos de l'appli</ion-label>
+        </ion-button>
       </ion-item>
+
     </ion-list>
   </ion-content>
 

@@ -15,6 +15,7 @@ export class LoginPage implements OnInit {
 
   ngOnInit() {
     console.log("login")
+    this.number = localStorage.getItem("phoneNumber")
   }
 
   login() {

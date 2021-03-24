@@ -14,6 +14,7 @@ import { JwtModule } from '@auth0/angular-jwt';
 import { HTTP } from '@ionic-native/http/ngx';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NativeHttpInterceptor } from './interceptor/native-http.interceptor';
+// import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
 
 export function tokenGetter(): string | null {
   console.log("getToken: ", localStorage.getItem('jwt_token'))
@@ -43,7 +44,8 @@ export function tokenGetter(): string | null {
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     { provide: HTTP_INTERCEPTORS, useClass: NativeHttpInterceptor, multi: true },
-    HTTP
+    HTTP,
+    // AndroidPermissions,
   ],
   bootstrap: [AppComponent],
 })

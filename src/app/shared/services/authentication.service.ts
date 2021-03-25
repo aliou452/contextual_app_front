@@ -69,7 +69,7 @@ export class AuthenticationService {
   logout(): void {
     localStorage.removeItem(this.jwtTokenName);
     this.authUser.next(null);
-    this.navCtrl.navigateRoot('home/login', {replaceUrl: true});
+    this.navCtrl.navigateRoot('/home/login', {replaceUrl: true});
   }
 
   login(values: { username: string, password: string }) {

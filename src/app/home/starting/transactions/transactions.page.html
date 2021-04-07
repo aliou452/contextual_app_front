@@ -1,69 +1,73 @@
-<!-- <ion-header>
+<ion-header>
   <ion-toolbar>
-    <ion-title>transactions</ion-title>
+    <ion-title class="ion-text-center">Envoyer de l'argent</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-card>
+          <ion-card-title>Choix 1</ion-card-title>
+          <ion-card-content>
+            Tranférer 20000fcfa
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
 
-</ion-content> -->
+      <ion-col>
+        <ion-card>
+          <ion-card-title>Choix 2</ion-card-title>
+          <ion-card-content>
+            Tranférer 30000fcfa
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
 
-<ion-header>
-  <ion-toolbar>
-    <ion-title>transactions</ion-title>
-  </ion-toolbar>
-</ion-header>
+      <ion-col>
+        <ion-card>
+          <ion-card-title>Choix 3</ion-card-title>
+          <ion-card-content>
+            Tranférer 40000fcfa
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
 
-<ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-back-button defaultHref="/home/dashboard"></ion-back-button>
-    </ion-buttons>
-  </ion-toolbar>
-</ion-header>
+    </ion-row>
 
-<ion-content>
-	  <ion-card>
-      <ion-card-header>
-            Balance 
-      </ion-card-header>     
-    </ion-card>
+    <ion-row>
+      <ion-col>
+        <ion-card>
+          <ion-card-title>Choix 4</ion-card-title>
+          <ion-card-content>
+            Tranférer 50000fcfa
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
 
-    <ion-card>
-    	  <ion-grid>
-    	  	       <ion-row>
-						  <ion-col style="background-color:hsl(22, 96%, 50%)">
-						       <ion-label>Sujet</ion-label>
-						  </ion-col>
-						  <ion-col style="background-color:hsl(22, 96%, 50%)">
-						       <ion-label>Date</ion-label>
-						  </ion-col>
-						  <ion-col style="background-color:hsl(22, 96%, 50%)">
-						       <ion-label>Type</ion-label>
-						  </ion-col>
-						  <ion-col style="background-color:hsl(22, 96%, 50%)">
-						       <ion-label>Montant</ion-label>
-						   </ion-col>
-				    </ion-row>
-				  <ion-row *ngFor ="let each of transactions">
-						  <ion-col  class="ion-text-start">
-						    <ion-label>{{each.subject}}</ion-label>
-						  </ion-col>
-						  <ion-col  class="ion-text-start">
-						    <ion-label>{{each.note}}</ion-label>
-						  </ion-col>
-						  <ion-col  class="ion-text-start">
-						    <ion-label>{{each.debit}}</ion-label>
-						  </ion-col>
-						   <ion-col  class="ion-text-start">
-						    <ion-label>{{each.created_at}}</ion-label>
-						  </ion-col>
-						  
-				    </ion-row>
-			</ion-grid>
-    </ion-card>
+      <ion-col>
+        <ion-card>
+          <ion-card-title>Choix 5</ion-card-title>
+          <ion-card-content>
+            Tranférer 60000fcfa
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
 
+      <ion-col>
+        <ion-card>
+          <ion-card-title>Choix 6</ion-card-title>
+          <ion-card-content>
+            Tranférer 70000fcfa
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
 
-    
+    </ion-row>
+  </ion-grid>
 
+  <ion-button expand="full" padding>
+    Transférer de l'argent
+  </ion-button>
 </ion-content>

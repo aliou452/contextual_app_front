@@ -39,12 +39,15 @@ export class StartPage implements OnInit {
         console.log(this.id)
       }
     )
+    await this.getTransactions();
+
+  }
+
+  async getTransactions(){
     await this.transactionsService.getTransaction(2).subscribe(
       res =>
       this.list = res
     );
-
-
   }
 
   async logout() {

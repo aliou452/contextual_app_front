@@ -1,0 +1,36 @@
+ion-item{
+  // --background: darkgrey;
+  --border-color: #FF7A01;
+}
+
+.my-card {
+  border-radius: 40px 40px 0px 0px;
+  background: #EEEEEE;
+  display: flex;
+  flex-direction: column;
+  width: 100% !important;
+  height: 100%;
+  margin: 0 !important;
+}
+
+.back{
+  background-color: #EEEEEE;
+  // color: #EEEEEE;
+}
+
+.pocket{
+  border-radius: 20px 20px 20px 20px;
+  display: flex;
+  flex-direction: column;
+  height: 150px;
+  background: #EEEEEE;
+}
+
+.card-content{
+  margin-top: 50px;
+  margin-left: 10px;
+}
+
+ion-card-title {
+  margin-left: 10px;
+}

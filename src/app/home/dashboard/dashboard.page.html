@@ -16,7 +16,7 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="/home/starting"></ion-back-button>
+      <ion-back-button defaultHref="/home/start"></ion-back-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
@@ -29,7 +29,6 @@
         Solde actuel
       </ion-card-header>
       <ion-card-content>
-        {{balance}}
         <br>
        <ion-button expand="block" routerLink="/home/transactions" routerDirection="root">Transactions</ion-button>
       </ion-card-content>
@@ -43,7 +42,7 @@
     Envois
   </ion-card-header>
   <ion-card-content>
-    {{total_send}}
+    total_send
     <br>
       <ion-button expand="block" routerLink="/home/envois" routerDirection="root">Envoyer</ion-button>
 
@@ -60,7 +59,7 @@
     Reçus
   </ion-card-header>
   <ion-card-content>
-    {{total_receive}} 
+    total_receive
     <br>
       <ion-button expand="block" routerLink="/home/commandes" routerDirection="root">Commander</ion-button>
 

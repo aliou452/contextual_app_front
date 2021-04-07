@@ -1,0 +1,42 @@
+<ion-toolbar>
+  <ion-buttons slot="end">
+    <ion-button fill="clear">
+      <ion-icon slot="icon-only" name="search-outline"></ion-icon>
+    </ion-button>
+    <ion-button fill="clear" (click)="logout()">
+      <ion-icon slot="icon-only" name="notifications-outline"></ion-icon>
+    </ion-button>
+  </ion-buttons>
+</ion-toolbar>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-subtitle>Solde de mon compte</ion-card-subtitle>
+      <ion-card-title>{{pocket}} FCFA</ion-card-title>
+    </ion-card-header>
+  </ion-card>
+
+  <ion-list>
+    <ion-item *ngFor="let el of list">
+      <ion-card>
+        <ion-card-header>
+          <ion-card-subtitle>{{el.doneAt | slice:0:5}}</ion-card-subtitle>
+          <ion-card-title>{{el.typeTransaction | lowercase}}</ion-card-title>
+        </ion-card-header>
+
+        <ion-card-content>
+          {{el.amount}}
+        </ion-card-content>
+      </ion-card>
+    </ion-item>
+  </ion-list>
+
+</ion-content>
+<ion-footer>
+  <ion-toolbar no-padding>
+    <ion-button  expand="full" fill="clear" size="small">
+      Voir l'historique complet
+    </ion-button>
+  </ion-toolbar>
+</ion-footer>

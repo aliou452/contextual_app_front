@@ -13,8 +13,7 @@ export const environment = {
     appId: "1:189493659373:web:affed6a00e4f469809eee4",
     measurementId: "G-N4WWBJ104Y"
   },
-  serverIP: "http://192.168.43.89",
-  serverURL: "http://192.168.43.89:8080",
+  serverURL: "https://contextual-krq5flbcea-uc.a.run.app",
 
 
 };

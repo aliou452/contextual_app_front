@@ -6,8 +6,6 @@ import { tap } from "rxjs/operators";
 import { environment } from 'src/environments/environment';
 import { HTTP } from "@ionic-native/http/ngx";
 import { HttpClient } from '@angular/common/http';
-import { AuthResponse } from '../models/auth-response';
-import { User } from '../models/user';
 
 @Injectable({
   providedIn: 'root'
@@ -23,9 +21,8 @@ export class AuthenticationService {
     private http: HTTP,
     private httpClient: HttpClient,
     private jwtHelper: JwtHelperService,
-    private navCtrl: NavController) {}
-
-
+    private navCtrl: NavController
+    ) {}
 
     hasAccess(): Promise<boolean> {
       const jwt = localStorage.getItem(this.jwtTokenName);
@@ -52,18 +49,11 @@ export class AuthenticationService {
 
   getUser(): Observable<Object>{
     return this.httpClient.get(`${environment.serverURL}/api/v1/info`)
-      .pipe(tap(
-          response => {
-            const user = JSON.parse(JSON.stringify(response))
-            // const authResponse = new AuthResponse()
-            // console.log(user["fisrtName"])
-            // authResponse.firstName = user["firstName"]
-            // authResponse.lastName = user["lastName"]
-            // authResponse.number = user["number"]
-            // console.log("User: ")
-            // console.log([user["firstName"], user["lastName"], user["number"]])
-        return [user["firstName"], user["lastName"], user["number"]];
-      }))
+      // .pipe(tap(
+      //     response => {
+            // const user = JSON.parse(JSON.stringify(response))
+        // return [user["firstName"], user["lastName"], user["number"], user["id"], user["pocket"]];
+      // }))
   }
 
   logout(): void {
@@ -94,7 +84,7 @@ export class AuthenticationService {
   private handleJwtResponse(jwt: string): string {
     localStorage.setItem(this.jwtTokenName, jwt);
     this.authUser.next(jwt);
-    this.navCtrl.navigateRoot("/home/start")
+    this.navCtrl.navigateRoot("/home/start/start")
     return jwt;
   }
 

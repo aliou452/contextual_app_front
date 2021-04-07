@@ -1,73 +1,24 @@
-<div id="main-menu">
-  <ion-header [translucent]="true">
-    <ion-toolbar>
-      <ion-buttons slot="start">
-        <ion-menu-button></ion-menu-button>
-      </ion-buttons>
-      <ion-title>
-        Bienvenue
-        {{ firstName + " " + lastName }}
-      </ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-tabs>
+  <ion-tab-bar slot="bottom">
+    <ion-tab-button tab="start">
+      <ion-icon name="card-outline"></ion-icon>
+      <ion-label>Compte</ion-label>
+      <ion-badge>6</ion-badge>
+    </ion-tab-button>
 
-  <ion-content>
-    <ion-list lines="none">
-      <ion-item>
-        <ion-label>
-          <h2 class='strong'>Mon solde</h2>
-          <p>2959495 fcfa</p>
-        </ion-label>
-      </ion-item>
-    </ion-list>
+    <ion-tab-button tab="transactions">
+      <ion-icon name="swap-horizontal-outline"></ion-icon>
+      <ion-label>Transfert</ion-label>
+    </ion-tab-button>
 
-  </ion-content>
-</div>
+    <ion-tab-button tab="">
+      <ion-icon name="information-circle"></ion-icon>
+      <ion-label>Support</ion-label>
+    </ion-tab-button>
 
-
-<ion-menu contentId="main-menu">
-  <ion-header>
-    <ion-toolbar color="primary">
-      <ion-title>Start Menu</ion-title>
-    </ion-toolbar>
-  </ion-header>
-  <ion-content>
-    <ion-list>
-      <ion-item>
-        <ion-icon name="bar-chart"></ion-icon>
-        <ion-button color="primary" expand="block" [routerLink]="['/home/dashboard']" strong>
-          <ion-label> dashboard</ion-label>
-        </ion-button>
-      </ion-item>
-
-      <ion-item>
-        <ion-icon name="alert-outline"></ion-icon>
-        <ion-button color="primary" expand="block" [routerLink]="['/home/dashboard']" strong>
-          <ion-label> Faire une réclamation</ion-label>
-        </ion-button>
-      </ion-item>
-
-      <ion-item>
-        <ion-icon name="construct-outline"></ion-icon>
-        <ion-button color="primary" expand="block" [routerLink]="['/home/dashboard']" strong>
-          <ion-label> paramètres</ion-label>
-        </ion-button>
-      </ion-item>
-
-      <ion-item>
-        <ion-button (click)="logout()">
-          <ion-icon name="log-out-outline" slot="start"></ion-icon>
-          <ion-label>Se déconnecter</ion-label>
-        </ion-button>
-      </ion-item>
-
-      <ion-item>
-        <ion-button color="primary" expand="block" [routerLink]="['/home/dashboard']" strong>
-          <ion-icon name="information-circle-outline"></ion-icon>
-
-          <ion-label> A propos de l'appli</ion-label>
-        </ion-button>
-      </ion-item>
-    </ion-list>
-  </ion-content>
-</ion-menu>
+    <ion-tab-button tab="">
+      <ion-icon name="settings-outline"></ion-icon>
+      <ion-label>Réglage</ion-label>
+    </ion-tab-button>
+  </ion-tab-bar>
+</ion-tabs>

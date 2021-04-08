@@ -49,11 +49,6 @@ export class AuthenticationService {
 
   getUser(): Observable<Object>{
     return this.httpClient.get(`${environment.serverURL}/api/v1/info`)
-      // .pipe(tap(
-      //     response => {
-            // const user = JSON.parse(JSON.stringify(response))
-        // return [user["firstName"], user["lastName"], user["number"], user["id"], user["pocket"]];
-      // }))
   }
 
   logout(): void {

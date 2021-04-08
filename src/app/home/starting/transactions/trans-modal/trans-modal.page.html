@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button  defaultHref="home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Envoyer de l'argent</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item class="ion-padding ion-margin" lines="full">
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-input value="+221" readonly strong></ion-input>
+        </ion-col>
+        <ion-col>
+          <ion-label position="floating">Veillez entrer un numéro</ion-label>
+          <ion-input [(ngModel)]="receiver" required></ion-input>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-item>
+</ion-content>
+
+<ion-footer>
+  <ion-button expand="full" (click)="presentModal()">
+    Suivant
+  </ion-button>
+</ion-footer>

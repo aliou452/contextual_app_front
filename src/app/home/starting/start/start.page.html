@@ -33,11 +33,11 @@
         <ion-item-group class="back">
 
           <ion-item-divider class="back" lines="none">
-            <ion-label color="primary">Ce mois</ion-label>
+            <ion-label>Ce mois</ion-label>
           </ion-item-divider>
 
           <ion-item class="ion-margin" *ngFor="let el of list" type="button" button detail lines="full">
-            <ion-icon [name]="el.typeTransaction=='DEPOT'?'arrow-up-circle':'arrow-down-circle'"></ion-icon>
+            <ion-icon [name]="el.typeTransaction=='DEPOT'?'arrow-down-circle':'arrow-up-circle'"></ion-icon>
             <ion-label>
               <h3>{{el.sender.number}}</h3>
               <p>{{ (el.typeTransaction=="DEPOT"?"+":"-") + el.amount}} FCFA</p>

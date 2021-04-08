@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar color="primary">
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="/" text=""></ion-back-button>
+      <ion-back-button defaultHref="home" text=""></ion-back-button>
     </ion-buttons>
     <ion-title class="ion-text-uppercase">Connexion</ion-title>
   </ion-toolbar>
@@ -12,20 +12,20 @@
     <div class="ion-padding-vertical"></div>
     <ion-item lines="full" class="ion-margin-vertical">
       <ion-label position="floating">Mon numéro OM</ion-label>
-      <ion-input type="tel" autocomplete="tel" required inputmode="tel" maxlength=9></ion-input>
+      <ion-input type="tel" autocomplete="tel"  inputmode="tel" disabled="true" [(ngModel)]="number" name="number"></ion-input>
     </ion-item>
 
     <ion-item lines="full">
       <ion-label position="floating">Mon code secret</ion-label>
-      <ion-input type="password" required maxlength=4></ion-input>
+      <ion-input type="password" required maxlength=4 [(ngModel)]="code" name="code"></ion-input>
     </ion-item>
 
     <ion-row>
       <ion-col>
-        <ion-button type="submit" color="primary" expand="block" strong [routerLink]="['/home/starting']">Se connecter</ion-button>
+        <ion-button type="submit" color="primary" expand="block" strong (click)="login()">Se connecter</ion-button>
       </ion-col>
     </ion-row>
 
-  </form>>
+  </form>
 
 </ion-content>

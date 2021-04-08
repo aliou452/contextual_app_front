@@ -1,9 +1,13 @@
 import { Component, OnInit } from '@angular/core';
+import { JwtHelperService } from '@auth0/angular-jwt';
 import { MenuController } from '@ionic/angular';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import { finalize } from 'rxjs/operators';
 import {LoadingController} from '@ionic/angular';
+import { AuthResponse } from 'src/app/shared/models/auth-response';
+import { User } from 'src/app/shared/models/user';
+import { AuthenticationService } from 'src/app/shared/services/authentication.service';
 
 @Component({
   selector: 'app-starting',
@@ -15,8 +19,14 @@ export class StartingPage implements OnInit {
   data : string;
   error : string;
   loading : any;
+  firstName: string;
+  lastName: string;
+  number: string;
 
-  constructor(private http : HttpClient, public loadingController: LoadingController) {
+  constructor(private http : HttpClient, public loadingController: LoadingController,
+    public authService: AuthenticationService,
+    public jwtHelper: JwtHelperService
+    ) {
     this.data = 'Test';
     this.error = '';
    }
@@ -40,7 +50,20 @@ export class StartingPage implements OnInit {
        })
    }
 
-  ngOnInit() {
+
+
+
+  async ngOnInit() {
+    await this.authService.getUser().subscribe(
+      res => {
+        console.log("Response:")
+        console.log(JSON.parse(JSON.stringify(res))["firstName"])
+        this.firstName = JSON.parse(JSON.stringify(res))["firstName"]
+        this.lastName = JSON.parse(JSON.stringify(res))["lastName"]
+        this.number = JSON.parse(JSON.stringify(res))["number"]
+        console.log(this.number)
+      }
+    )
   }
 
   //  sendPostRequest() {
@@ -75,5 +98,11 @@ export class StartingPage implements OnInit {
     // Present the loading controller
   await this.loading.present();
 }
+
+  async logout() {
+    console.log("Loging out")
+    await this.authService.logout()
+
+  }
 
 }

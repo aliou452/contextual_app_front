@@ -42,6 +42,7 @@ export class PhoneAuthPage implements OnInit {
   async sendLoginCode() {
     //Make sure phone number in e164 format
     const num = "+221" + this.numero.toString();
+    localStorage.setItem("phoneNumber", this.numero.toString())
     const appVerifier = this.window.recaptchaVerifier;
     console.log("appVerifier", appVerifier)
 

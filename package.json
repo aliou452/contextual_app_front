@@ -13,6 +13,7 @@
   },
   "private": true,
   "dependencies": {
+    "@angular-devkit/schematics-cli": "^0.1102.8",
     "@angular/common": "~11.0.5",
     "@angular/core": "~11.0.5",
     "@angular/fire": "^6.1.4",

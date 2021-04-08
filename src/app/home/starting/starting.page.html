@@ -16,6 +16,8 @@
         <ion-label>
           <h2 class='strong'>Mon solde</h2>
           <p>2959495 fcfa</p>
+          <p *ngIf="!error;else errorContent">{{ data ? data : '-'}}</p>
+          <ng-template #errorContent><p><span style="color: red;">{{error}}</span></p></ng-template>
         </ion-label>
       </ion-item>
     </ion-list>

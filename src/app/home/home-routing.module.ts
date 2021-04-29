@@ -20,7 +20,19 @@ const routes: Routes = [
     path: 'start',
     loadChildren: () => import('./starting/starting.module').then( m => m.StartingPageModule),
     canActivate: [AuthGuard]
+  },  {
+    path: 'commmande',
+    loadChildren: () => import('./commmande/commmande.module').then( m => m.CommmandePageModule)
+  },
+  {
+    path: 'reclamation',
+    loadChildren: () => import('./reclamation/reclamation.module').then( m => m.ReclamationPageModule)
+  },
+  {
+    path: 'commandes',
+    loadChildren: () => import('./commandes/commandes.module').then( m => m.CommandesPageModule)
   }
+
 ];
 
 @NgModule({

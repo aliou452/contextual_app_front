@@ -10,7 +10,7 @@ const routes: Routes = [
   },
   {
     path: 'envoi',
-    loadChildren: () => import('./envoi/envoi.module').then( m => m.EnvoiPageModule)
+    loadChildren: () => import('../envoi/envoi.module').then( m => m.EnvoiPageModule)
   }
 ];
 

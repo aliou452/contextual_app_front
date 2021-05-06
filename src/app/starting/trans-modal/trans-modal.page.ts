@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
-import { EnvoiPage } from './envoi/envoi.page';
+import { EnvoiPage } from '../envoi/envoi.page';
 
 @Component({
   selector: 'app-trans-modal',

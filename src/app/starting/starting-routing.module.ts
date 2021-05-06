@@ -22,7 +22,6 @@ const routes: Routes = [
           {
             path: '',
             loadChildren: () => import("./transactions/transactions.module").then(m => m.TransactionsPageModule)
-            //  './transactions/transactions.module#TransactionsPageModule',
           },
         ],
       }

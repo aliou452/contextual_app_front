@@ -1,3 +1,4 @@
+import { NgZone } from '@angular/core';
 import { Component, Input, OnInit } from '@angular/core';
 import { ModalController, NavController } from '@ionic/angular';
 import { TransactionsService } from 'src/app/shared/services/transactions.service';
@@ -16,6 +17,7 @@ export class PasswordPage implements OnInit {
   constructor(
     private modalCtrl: ModalController,
     private transactionsService: TransactionsService,
+    private zone: NgZone,
     ) { }
 
   ngOnInit() {
@@ -23,15 +25,19 @@ export class PasswordPage implements OnInit {
 
   send() {
     console.log(this.receiver, this.amount, this.password)
-    this.transactionsService.send(this.receiver, this.amount, this.password, 2).subscribe(
-      () => console.log("Success")
+    this.transactionsService.send(this.receiver, this.amount, this.password).subscribe(
+      () => {
+        console.log("Success");
+        this.zone.runOutsideAngular(() => {
+          window.location.href = 'starting/start';
+          this.dismiss()
+        });
+      }
     )
-    this.dismiss()
+
   }
 
   dismiss() {
-    // using the injected ModalController this page
-    // can "dismiss" itself and optionally pass back data
     this.modalCtrl.dismiss({
       'dismissed': true
     });

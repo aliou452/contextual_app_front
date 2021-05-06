@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
-import { PasswordPage } from './password/password.page';
+import { PasswordPage } from '../password/password.page';
 
 @Component({
   selector: 'app-envoi',
@@ -33,7 +33,5 @@ export class EnvoiPage implements OnInit {
     console.log(data);
     return
   }
-
-
 
 }

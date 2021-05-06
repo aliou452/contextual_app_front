@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
-import { TransModalPage } from './trans-modal/trans-modal.page';
+import { TransModalPage } from '../trans-modal/trans-modal.page';
 
 @Component({
   selector: 'app-transactions',

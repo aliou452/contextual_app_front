@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { NavController } from '@ionic/angular';
 import { Observable, ReplaySubject } from 'rxjs';
-import { tap } from "rxjs/operators";
 import { environment } from 'src/environments/environment';
 import { HTTP } from "@ionic-native/http/ngx";
 import { HttpClient } from '@angular/common/http';
@@ -79,7 +78,7 @@ export class AuthenticationService {
   private handleJwtResponse(jwt: string): string {
     localStorage.setItem(this.jwtTokenName, jwt);
     this.authUser.next(jwt);
-    this.navCtrl.navigateRoot("/home/start/start")
+    this.navCtrl.navigateRoot("starting/start")
     return jwt;
   }
 

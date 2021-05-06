@@ -17,15 +17,16 @@ export class TransactionsService {
     private navCtrl: NavController
     ) { }
 
-  getTransaction(id: number): Observable<Transactions[]> {
-    return this.httpClient.get<Transactions[]>(`${environment.serverURL}/api/v1/${id}/transfers`)
+  getTransaction(): Observable<Transactions[]> {
+    return this.httpClient.get<Transactions[]>(`${environment.serverURL}/api/v1/transfers`)
   }
 
-  send(receiver: string, amount: number, password: string, id: number) {
-    return this.httpClient.post(`${environment.serverURL}/api/v1/${id}/transfers`,{
+  send(receiver: string, amount: number, password: string) {
+    return this.httpClient.post(`${environment.serverURL}/api/v1/transfers`,{
       receiver: receiver, amount: amount, code: password
-    }).pipe(
-      tap(() => this.navCtrl.navigateRoot("/home/start/start"))
-    )
+    })
+    // .pipe(
+    //   tap(() => this.navCtrl.navigateRoot("/home/start/start"))
+    // )
   }
 }

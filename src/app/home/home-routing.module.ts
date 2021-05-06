@@ -17,10 +17,6 @@ const routes: Routes = [
     loadChildren: () => import('./dashboard/dashboard.module').then( m => m.DashboardPageModule)
   },
   {
-    path: 'start',
-    loadChildren: () => import('./starting/starting.module').then( m => m.StartingPageModule),
-    canActivate: [AuthGuard]
-  },  {
     path: 'commmande',
     loadChildren: () => import('./commmande/commmande.module').then( m => m.CommmandePageModule)
   },

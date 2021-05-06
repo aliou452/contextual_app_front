@@ -62,7 +62,8 @@ export class PhoneAuthPage implements OnInit {
         });
 
         this.window.result = result;
-      }).catch(err => console.log('err1', err))
+      })
+      .catch(err => console.log('err1', err))
   }
 
   async presentModal() {

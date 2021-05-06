@@ -43,7 +43,7 @@ export class StartPage implements OnInit {
   }
 
   async getTransactions(){
-    await this.transactionsService.getTransaction(2).subscribe(
+    await this.transactionsService.getTransaction().subscribe(
       res =>
       this.list = res
     );

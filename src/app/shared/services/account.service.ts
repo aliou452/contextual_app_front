@@ -1,24 +1,23 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { map, tap } from "rxjs/operators";
 import { Observable } from 'rxjs';
-import { Transactions } from '../models/transactions.model';
+import { Account } from '../models/account.model';
 import { NavController } from '@ionic/angular';
 
 
 @Injectable({
   providedIn: 'root'
 })
-export class TransactionsService {
+export class AccountService {
 
   constructor(
     private httpClient: HttpClient,
     private navCtrl: NavController
     ) { }
 
-  getTransaction(): Observable<Transactions[]> {
-    return this.httpClient.get<Transactions[]>(`${environment.serverURL}/api/v1/deposits`)
+  getAccount(): Observable<Account[]> {
+    return this.httpClient.get<Account[]>(`${environment.serverURL}/api/v1/deposits`)
   }
 
   depot(receiver: string, amount: number, password: string, typeDep: string) {

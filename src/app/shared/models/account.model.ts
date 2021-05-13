@@ -1,4 +1,4 @@
-export class Transactions {
+export class Account {
   id: string;
   dist: any;
   client: any;

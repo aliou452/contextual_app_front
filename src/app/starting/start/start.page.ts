@@ -1,8 +1,8 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { Transactions } from 'src/app/shared/models/transactions.model';
+import { Account } from 'src/app/shared/models/account.model';
 import { AuthenticationService } from 'src/app/shared/services/authentication.service';
-import { TransactionsService } from 'src/app/shared/services/transactions.service';
+import { AccountService } from 'src/app/shared/services/account.service';
 
 @Component({
   selector: 'app-start',
@@ -17,12 +17,12 @@ export class StartPage implements OnInit {
   pocket: number;
   list: any[] = [];
   id: number;
-  data: Transactions[];
+  data: Account[];
 
   constructor(
     public authService: AuthenticationService,
     public jwtHelper: JwtHelperService,
-    public transactionsService: TransactionsService
+    public accountService: AccountService
     ) { }
 
   async ngOnInit() {
@@ -38,12 +38,12 @@ export class StartPage implements OnInit {
         console.log(this.id)
       }
     )
-    await this.getTransactions();
+    await this.getAccount();
 
   }
 
-  async getTransactions(){
-    await this.transactionsService.getTransaction().subscribe(
+  async getAccount(){
+    await this.accountService.getAccount().subscribe(
       res =>
       this.list = res
     );

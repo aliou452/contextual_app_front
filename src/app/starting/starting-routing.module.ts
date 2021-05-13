@@ -17,16 +17,17 @@ const routes: Routes = [
         ],
       },
       {
-        path: 'transactions',
+        path: 'account',
         children: [
           {
             path: '',
-            loadChildren: () => import("./transactions/transactions.module").then(m => m.TransactionsPageModule)
+            loadChildren: () => import("./account/account.module").then(m => m.AccountPageModule)
           },
         ],
       }
     ]
-  },  {
+  },
+  {
     path: 'commande',
     loadChildren: () => import('./commande/commande.module').then( m => m.CommandePageModule)
   },

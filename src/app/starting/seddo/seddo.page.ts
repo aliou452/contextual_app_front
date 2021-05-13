@@ -1,5 +1,5 @@
 import { Component, NgZone, OnInit } from '@angular/core';
-import { TransactionsService } from 'src/app/shared/services/transactions.service';
+import { AccountService } from 'src/app/shared/services/account.service';
 
 @Component({
   selector: 'app-seddo',
@@ -11,18 +11,18 @@ export class SeddoPage implements OnInit {
   code: string;
 
   constructor(
-    private transactionsService: TransactionsService,
+    private accountService: AccountService,
     private zone: NgZone) { }
 
   ngOnInit() {
   }
 
   order(){
-    this.transactionsService.order(this.amount, this.code, "SEDDO").subscribe(
+    this.accountService.order(this.amount, this.code, "SEDDO").subscribe(
       () => {
         console.log("Success");
         this.zone.runOutsideAngular(() => {
-          window.location.href = 'starting/transactions';
+          window.location.href = 'starting/account';
         });
       }
     )

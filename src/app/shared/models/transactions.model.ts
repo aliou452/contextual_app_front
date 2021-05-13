@@ -1,8 +1,8 @@
 export class Transactions {
   id: string;
-  sender: any;
-  receiver: any;
+  dist: any;
+  client: any;
   amount: number;
   doneAt: string[];
-  typeTransaction: string;
+  typeDeposit: string;
 }

@@ -12,6 +12,7 @@ export class PasswordPage implements OnInit {
 
   @Input() receiver: string;
   @Input() amount: number;
+  @Input() typeTrans: string;
   password: string;
 
   constructor(
@@ -25,11 +26,22 @@ export class PasswordPage implements OnInit {
 
   send() {
     console.log(this.receiver, this.amount, this.password)
-    this.transactionsService.send(this.receiver, this.amount, this.password).subscribe(
+    if(this.typeTrans=="depot")
+    this.transactionsService.depot(this.receiver, this.amount, this.password).subscribe(
       () => {
         console.log("Success");
         this.zone.runOutsideAngular(() => {
-          window.location.href = 'starting/start';
+          window.location.href = 'starting/transactions';
+          this.dismiss()
+        });
+      }
+    )
+    else if(this.typeTrans=="retrait")
+    this.transactionsService.retrait(this.receiver, this.amount, this.password).subscribe(
+      () => {
+        console.log("Success");
+        this.zone.runOutsideAngular(() => {
+          window.location.href = 'starting/transactions';
           this.dismiss()
         });
       }

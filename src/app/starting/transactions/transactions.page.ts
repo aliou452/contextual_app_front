@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { JwtHelperService } from '@auth0/angular-jwt';
 import { ModalController } from '@ionic/angular';
+import { Transactions } from 'src/app/shared/models/transactions.model';
+import { AuthenticationService } from 'src/app/shared/services/authentication.service';
+import { TransactionsService } from 'src/app/shared/services/transactions.service';
 import { TransModalPage } from '../trans-modal/trans-modal.page';
 
 @Component({
@@ -9,15 +13,56 @@ import { TransModalPage } from '../trans-modal/trans-modal.page';
 })
 export class TransactionsPage implements OnInit {
 
-  constructor(public modalController: ModalController) { }
+  firstName: string;
+  lastName: string;
+  number: string;
+  pocket: number;
+  list: any[] = [];
+  id: number;
+  data: Transactions[];
 
-  ngOnInit() {
+  constructor(
+    public authService: AuthenticationService,
+    public jwtHelper: JwtHelperService,
+    public transactionsService: TransactionsService,
+    public modalController: ModalController
+    ) { }
+
+  async ngOnInit() {
+    await this.authService.getUser().subscribe(
+      res => {
+        console.log("Response:")
+        console.log(JSON.parse(JSON.stringify(res))["firstName"])
+        this.firstName = JSON.parse(JSON.stringify(res))["firstName"]
+        this.lastName = JSON.parse(JSON.stringify(res))["lastName"]
+        this.number = JSON.parse(JSON.stringify(res))["number"]
+        this.pocket = JSON.parse(JSON.stringify(res))["pocket"],
+        this.id = JSON.parse(JSON.stringify(res))["id"]
+        console.log(this.id)
+      }
+    )
+    await this.getTransactions();
+
   }
 
-  async presentModal() {
+  async getTransactions(){
+    await this.transactionsService.getTransaction().subscribe(
+      res =>
+      this.list = res
+    );
+  }
+
+  async logout() {
+    console.log("Loging out")
+    await this.authService.logout()
+  }
+
+  async presentModal(typeTrans) {
     const modal = await this.modalController.create({
       component: TransModalPage,
-      cssClass: 'my-custom-class'
+      componentProps: {
+        "typeTrans": typeTrans
+      }
     });
     return await modal.present();
   }

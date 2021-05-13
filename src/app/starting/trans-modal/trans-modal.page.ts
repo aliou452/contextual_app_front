@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { EnvoiPage } from '../envoi/envoi.page';
 
@@ -10,19 +10,22 @@ import { EnvoiPage } from '../envoi/envoi.page';
 export class TransModalPage implements OnInit {
 
   receiver: string;
-
+  @Input() typeTrans: string
+  transactions = {
+        "depot": "Faire un depot",
+        "retrait": "Faire un retrait"
+      }
   constructor(private modalController: ModalController) { }
 
   ngOnInit() {
   }
 
-
   async presentModal() {
     const modal = await this.modalController.create({
       component: EnvoiPage,
-      cssClass: 'my-custom-class',
       componentProps: {
-        "receiver": this.receiver
+        "receiver": this.receiver,
+        "typeTrans": this.typeTrans
       }
     });
     return await modal.present();

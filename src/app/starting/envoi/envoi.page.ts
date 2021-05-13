@@ -10,6 +10,7 @@ import { PasswordPage } from '../password/password.page';
 export class EnvoiPage implements OnInit {
 
   @Input() receiver: string;
+  @Input() typeTrans: string;
   amount: number;
   password: string;
 
@@ -21,10 +22,10 @@ export class EnvoiPage implements OnInit {
   async presentModal() {
     const modal = await this.modalController.create({
       component: PasswordPage,
-      cssClass: 'my-custom-class',
       componentProps: {
         "amount": this.amount,
-        "receiver": this.receiver
+        "receiver": this.receiver,
+        "typeTrans": this.typeTrans
       }
     });
 

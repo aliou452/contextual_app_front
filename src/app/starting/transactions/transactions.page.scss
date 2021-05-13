@@ -6,7 +6,11 @@
   background: #EEEEEE;
 }
 
-.card-content{
-  margin-top: 50px;
-  margin-left: 10px;
+.my-list {
+  border-radius: 40px 40px 0px 0px;
+  display: flex;
+  flex-direction: column;
+  width: 100% !important;
+  height: 100%;
+  margin: 0 !important;
 }

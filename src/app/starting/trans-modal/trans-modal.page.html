@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-back-button  defaultHref="home"></ion-back-button>
     </ion-buttons>
-    <ion-title>Faire une transaction</ion-title>
+    <ion-title>{{transactions[typeTrans]}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -15,7 +15,7 @@
           <ion-input value="+221" readonly strong></ion-input>
         </ion-col>
         <ion-col>
-          <ion-label position="floating">Veillez entrer un numéro</ion-label>
+          <ion-label position="floating">Veillez entrer le numéro</ion-label>
           <ion-input [(ngModel)]="receiver" required></ion-input>
         </ion-col>
       </ion-row>

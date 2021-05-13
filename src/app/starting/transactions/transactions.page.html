@@ -10,7 +10,6 @@
 </ion-toolbar>
 
 <ion-content>
-
   <ion-card class="pocket">
     <ion-card-header>
       <ion-card-title>Solde du compte</ion-card-title>
@@ -19,17 +18,41 @@
       <ion-label>
         <h1>
           <strong>
-             FCFA
+            {{pocket}} FCFA
           </strong>
         </h1>
       </ion-label>
     </ion-card-content>
   </ion-card>
 
+  <ion-list class="my-list">
+    <ion-item button detail routerLink="../commande">
+      <ion-label>
+        Commande UV
+      </ion-label>
+    </ion-item>
 
+    <ion-item button detail>
+      <ion-label>
+        Commande SEDDO
+      </ion-label>
+    </ion-item>
 
+    <ion-item button detail (click)="presentModal('depot')">
+      <ion-label>
+        Dépot d'argent
+      </ion-label>
+    </ion-item>
 
-<!--
+    <ion-item button detail (click)="presentModal('retrait')">
+      <ion-label>
+        Retrait d'argent
+      </ion-label>
+    </ion-item>
+
+  </ion-list>
+
+  <!--
   <ion-button expand="full" padding (click)="presentModal()">
     Transférer de l'argent
   </ion-button> -->
@@ -37,7 +60,7 @@
 
 <ion-footer>
   <ion-toolbar no-padding>
-    <ion-button expand="full" fill="clear" size="small">
+    <ion-button expand="full" fill="clear" size="small" routerLink="/starting/start">
       Voir l'historique des transactions
     </ion-button>
   </ion-toolbar>

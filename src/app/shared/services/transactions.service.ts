@@ -18,15 +18,24 @@ export class TransactionsService {
     ) { }
 
   getTransaction(): Observable<Transactions[]> {
-    return this.httpClient.get<Transactions[]>(`${environment.serverURL}/api/v1/transfers`)
+    return this.httpClient.get<Transactions[]>(`${environment.serverURL}/api/v1/deposits`)
   }
 
-  send(receiver: string, amount: number, password: string) {
-    return this.httpClient.post(`${environment.serverURL}/api/v1/transfers`,{
-      receiver: receiver, amount: amount, code: password
+  depot(receiver: string, amount: number, password: string) {
+    return this.httpClient.post(`${environment.serverURL}/api/v1/deposits`,{
+      number: receiver, amount: amount, code: password
     })
-    // .pipe(
-    //   tap(() => this.navCtrl.navigateRoot("/home/start/start"))
-    // )
+  }
+
+  retrait(receiver: string, amount: number, password: string) {
+    return this.httpClient.post(`${environment.serverURL}/api/v1/withdrawal`,{
+      number: receiver, amount: amount, code: password
+    })
+  }
+
+  order(amount: number, code: string) {
+    return this.httpClient.post(`${environment.serverURL}/api/v1/orders`,{
+      amount: amount, code: code
+    })
   }
 }

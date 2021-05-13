@@ -22,10 +22,10 @@
           </ion-item-divider>
 
           <ion-item class="ion-margin" *ngFor="let el of list" type="button" button detail lines="full">
-            <ion-icon [name]="el.typeTransaction=='DEPOT'?'arrow-down-circle':'arrow-up-circle'"></ion-icon>
+            <ion-icon [name]="el.typeDeposit=='DEPOT'?'arrow-down-circle':'arrow-up-circle'"></ion-icon>
             <ion-label>
-              <h3>{{el.typeTransaction=='DEPOT'?el.sender.number:el.receiver.number}}</h3>
-              <p>{{(el.typeTransaction=="DEPOT"?"+":"-") + el.amount}} FCFA</p>
+              <h3>{{el.typeDeposit=='DEPOSIT'?el.dist.number:el.client.number}}</h3>
+              <p>{{(el.typeDeposit=="DEPOSIT"?"+":"-") + el.amount}} FCFA</p>
             </ion-label>
           </ion-item>
 

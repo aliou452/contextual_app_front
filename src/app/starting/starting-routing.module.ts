@@ -26,7 +26,11 @@ const routes: Routes = [
         ],
       }
     ]
+  },  {
+    path: 'commande',
+    loadChildren: () => import('./commande/commande.module').then( m => m.CommandePageModule)
   }
+
 ];
 
 @NgModule({

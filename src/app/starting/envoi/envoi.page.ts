@@ -11,6 +11,7 @@ export class EnvoiPage implements OnInit {
 
   @Input() receiver: string;
   @Input() typeTrans: string;
+  @Input() typeDep: string;
   amount: number;
   password: string;
 
@@ -25,7 +26,8 @@ export class EnvoiPage implements OnInit {
       componentProps: {
         "amount": this.amount,
         "receiver": this.receiver,
-        "typeTrans": this.typeTrans
+        "typeTrans": this.typeTrans,
+        "typeDep": this.typeDep
       }
     });
 

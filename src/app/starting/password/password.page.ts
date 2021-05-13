@@ -13,6 +13,7 @@ export class PasswordPage implements OnInit {
   @Input() receiver: string;
   @Input() amount: number;
   @Input() typeTrans: string;
+  @Input() typeDep: string;
   password: string;
 
   constructor(
@@ -27,7 +28,7 @@ export class PasswordPage implements OnInit {
   send() {
     console.log(this.receiver, this.amount, this.password)
     if(this.typeTrans=="depot")
-    this.transactionsService.depot(this.receiver, this.amount, this.password).subscribe(
+    this.transactionsService.depot(this.receiver, this.amount, this.password, this.typeDep).subscribe(
       () => {
         console.log("Success");
         this.zone.runOutsideAngular(() => {

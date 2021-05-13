@@ -78,7 +78,7 @@ export class AuthenticationService {
   private handleJwtResponse(jwt: string): string {
     localStorage.setItem(this.jwtTokenName, jwt);
     this.authUser.next(jwt);
-    this.navCtrl.navigateRoot("starting/start")
+    this.navCtrl.navigateRoot("/starting/transactions")
     return jwt;
   }
 

@@ -61,7 +61,8 @@ export class TransactionsPage implements OnInit {
     const modal = await this.modalController.create({
       component: TransModalPage,
       componentProps: {
-        "typeTrans": typeTrans
+        "typeTrans": typeTrans,
+        "typeDep": "MONEY"
       }
     });
     return await modal.present();

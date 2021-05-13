@@ -10,7 +10,9 @@ import { EnvoiPage } from '../envoi/envoi.page';
 export class TransModalPage implements OnInit {
 
   receiver: string;
-  @Input() typeTrans: string
+  @Input() typeTrans: string;
+  @Input() typeDep: string;
+
   transactions = {
         "depot": "Faire un depot",
         "retrait": "Faire un retrait"
@@ -25,7 +27,8 @@ export class TransModalPage implements OnInit {
       component: EnvoiPage,
       componentProps: {
         "receiver": this.receiver,
-        "typeTrans": this.typeTrans
+        "typeTrans": this.typeTrans,
+        "typeDep": this.typeDep
       }
     });
     return await modal.present();

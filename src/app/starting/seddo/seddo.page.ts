@@ -2,12 +2,11 @@ import { Component, NgZone, OnInit } from '@angular/core';
 import { TransactionsService } from 'src/app/shared/services/transactions.service';
 
 @Component({
-  selector: 'app-commande',
-  templateUrl: './commande.page.html',
-  styleUrls: ['./commande.page.scss'],
+  selector: 'app-seddo',
+  templateUrl: './seddo.page.html',
+  styleUrls: ['./seddo.page.scss'],
 })
-export class CommandePage implements OnInit {
-
+export class SeddoPage implements OnInit {
   amount: number;
   code: string;
 
@@ -19,7 +18,7 @@ export class CommandePage implements OnInit {
   }
 
   order(){
-    this.transactionsService.order(this.amount, this.code, "MONEY").subscribe(
+    this.transactionsService.order(this.amount, this.code, "SEDDO").subscribe(
       () => {
         console.log("Success");
         this.zone.runOutsideAngular(() => {

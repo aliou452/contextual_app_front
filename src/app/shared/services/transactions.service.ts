@@ -21,9 +21,9 @@ export class TransactionsService {
     return this.httpClient.get<Transactions[]>(`${environment.serverURL}/api/v1/deposits`)
   }
 
-  depot(receiver: string, amount: number, password: string) {
+  depot(receiver: string, amount: number, password: string, typeDep: string) {
     return this.httpClient.post(`${environment.serverURL}/api/v1/deposits`,{
-      number: receiver, amount: amount, code: password
+      number: receiver, amount: amount, code: password, type: typeDep
     })
   }
 
@@ -33,9 +33,9 @@ export class TransactionsService {
     })
   }
 
-  order(amount: number, code: string) {
+  order(amount: number, code: string, typeOrder: string) {
     return this.httpClient.post(`${environment.serverURL}/api/v1/orders`,{
-      amount: amount, code: code
+      amount: amount, code: code, typeOrder: typeOrder
     })
   }
 }

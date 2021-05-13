@@ -8,11 +8,11 @@ const routes: Routes = [
     component: StartingPage,
     children: [
       {
-        path: 'start',
+        path: 'transactions',
         children: [
           {
             path: '',
-            loadChildren: () => import("./start/start.module").then(m => m.StartPageModule),
+            loadChildren: () => import("./transactions/transactions.module").then(m => m.TransactionsPageModule),
           },
         ],
       },

@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-back-button  defaultHref="/starting"></ion-back-button>
+    <ion-buttons slot="end">
+      <ion-button (click)="dismiss()">Annuler</ion-button>
     </ion-buttons>
     <ion-title>{{transactions[typeTrans]}}</ion-title>
   </ion-toolbar>

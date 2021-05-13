@@ -33,5 +33,9 @@ export class TransModalPage implements OnInit {
     });
     return await modal.present();
   }
+
+  dismiss() {
+    this.modalController.dismiss();
+  }
 }
 

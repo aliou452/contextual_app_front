@@ -5,11 +5,11 @@ import { AuthenticationService } from 'src/app/shared/services/authentication.se
 import { AccountService } from 'src/app/shared/services/account.service';
 
 @Component({
-  selector: 'app-start',
-  templateUrl: './start.page.html',
-  styleUrls: ['./start.page.scss'],
+  selector: 'app-transactions',
+  templateUrl: './transactions.page.html',
+  styleUrls: ['./transactions.page.scss'],
 })
-export class StartPage implements OnInit {
+export class TransactionsPage implements OnInit {
 
   firstName: string;
   lastName: string;

@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 
@@ -14,7 +14,10 @@ import { JwtModule } from '@auth0/angular-jwt';
 import { HTTP } from '@ionic-native/http/ngx';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NativeHttpInterceptor } from './interceptor/native-http.interceptor';
-// import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
+import { registerLocaleData } from '@angular/common';
+import localeFr from '@angular/common/locales/fr';
+
+registerLocaleData(localeFr);
 
 export function tokenGetter(): string | null {
   console.log("getToken: ", localStorage.getItem('jwt_token'))
@@ -45,7 +48,7 @@ export function tokenGetter(): string | null {
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     { provide: HTTP_INTERCEPTORS, useClass: NativeHttpInterceptor, multi: true },
     HTTP,
-    // AndroidPermissions,
+    // { provide: LOCALE_ID, useValue: "fr-GF" }
   ],
   bootstrap: [AppComponent],
 })

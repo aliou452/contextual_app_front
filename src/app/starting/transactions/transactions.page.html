@@ -1,39 +1,52 @@
 <ion-toolbar>
-  <ion-buttons slot="end">
-    <ion-button fill="clear" (click)="logout()">
-      <ion-icon slot="icon-only" name="search-outline"></ion-icon>
-    </ion-button>
-    <ion-button fill="clear" (click)="logout()">
-      <ion-icon slot="icon-only" name="notifications-outline" ></ion-icon>
-    </ion-button>
+  <ion-buttons slot="start">
+    <ion-back-button defaultHref="/starting/account"></ion-back-button>
   </ion-buttons>
+  <ion-title>Historique des transactions</ion-title>
+
 </ion-toolbar>
 
 <ion-content>
-  <ion-card class="my-card">
-    <ion-card-content>
-      <ion-list class="back">
-        <ion-list-header class="back">Transactions</ion-list-header>
+  <ion-segment value="Tout" [(ngModel)]="segment">
+    <ion-segment-button value="Tout">
+      <ion-label color="primary">TOUT</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="Entrant">
+      <ion-label color="primary">ENTRANT</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="Sortant">
+      <ion-label color="primary">SORTANT</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+  <ion-row class="ion-padding-top">
+    <ion-chip (click)="setSegType('today')" color="secondary">
+      <ion-label>Aujourd'hui</ion-label>
+    </ion-chip>
+    <ion-chip (click)="setSegType('yesterday')" color="secondary">
+      <ion-label>Hier</ion-label>
+    </ion-chip>
+    <ion-chip (click)="setSegType('month')" color="secondary">
+      <ion-label>Ce mois</ion-label>
+    </ion-chip>
+    <ion-chip (click)="setSegType('all')" color="secondary">
+      <ion-label>Personnalisé</ion-label>
+    </ion-chip>
+  </ion-row>
 
-        <ion-item-group class="back">
+  <ion-list class="back">
+    <ng-container *ngFor="let el of list">
+      <ion-item class="ion-margin" *ngIf="show(el.doneAt, el.typeDeposit)" type="button" button detail lines="full">
+        <ion-icon [name]="el.typeDeposit=='DEPOT'?'arrow-down-circle':'arrow-up-circle'"></ion-icon>
+        <ion-label>
+          <h3>{{el.typeDeposit=='DEPOSIT'?el.dist.number:el.client.number}}</h3>
+          <p>{{(el.typeDeposit=="DEPOSIT"?"+":"-") + el.amount}} FCFA
+            <br>
+            {{ format(el.doneAt, 'longDate', "fr") }}
+          </p>
+        </ion-label>
+      </ion-item>
+    </ng-container>
 
-          <ion-item-divider class="back" lines="none">
-            <ion-label>Ce mois</ion-label>
-          </ion-item-divider>
+  </ion-list>
 
-          <ion-item class="ion-margin" *ngFor="let el of list" type="button" button detail lines="full">
-            <ion-icon [name]="el.typeDeposit=='DEPOT'?'arrow-down-circle':'arrow-up-circle'"></ion-icon>
-            <ion-label>
-              <h3>{{el.typeDeposit=='DEPOSIT'?el.dist.number:el.client.number}}</h3>
-              <p>{{(el.typeDeposit=="DEPOSIT"?"+":"-") + el.amount}} FCFA</p>
-            </ion-label>
-          </ion-item>
-
-        </ion-item-group>
-
-      </ion-list>
-
-    </ion-card-content>
-  </ion-card>
 </ion-content>
-

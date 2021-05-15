@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { ModalController } from '@ionic/angular';
-import { Account } from 'src/app/shared/models/account.model';
 import { AuthenticationService } from 'src/app/shared/services/authentication.service';
 import { AccountService } from 'src/app/shared/services/account.service';
 import { TransModalPage } from '../trans-modal/trans-modal.page';
@@ -17,7 +16,6 @@ export class AccountPage implements OnInit {
   lastName: string;
   number: string;
   pocket: number;
-  list: any[] = [];
   id: number;
   data: Account[];
 
@@ -41,16 +39,9 @@ export class AccountPage implements OnInit {
         console.log(this.id)
       }
     )
-    await this.getAccount();
 
   }
 
-  async getAccount(){
-    await this.accountService.getAccount().subscribe(
-      res =>
-      this.list = res
-    );
-  }
 
   async logout() {
     console.log("Loging out")

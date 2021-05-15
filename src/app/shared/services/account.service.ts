@@ -2,8 +2,9 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
-import { Account } from '../models/account.model';
+import { map } from "rxjs/operators";
 import { NavController } from '@ionic/angular';
+import { Transaction } from '../models/transaction.model';
 
 
 @Injectable({
@@ -16,8 +17,15 @@ export class AccountService {
     private navCtrl: NavController
     ) { }
 
-  getAccount(): Observable<Account[]> {
-    return this.httpClient.get<Account[]>(`${environment.serverURL}/api/v1/deposits`)
+  getAccount(): Observable<Transaction[]> {
+    return this.httpClient.get<any[]>(`${environment.serverURL}/api/v1/deposits`)
+    .pipe(
+      map((data: any[]) => {
+        let trans = [];
+        data.forEach((d) => trans.push(new Transaction(d)));
+        return trans;
+      })
+    )
   }
 
   depot(receiver: string, amount: number, password: string, typeDep: string) {

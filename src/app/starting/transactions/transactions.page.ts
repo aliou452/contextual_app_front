@@ -1,9 +1,11 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild, PLATFORM_ID, Inject } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Transaction } from 'src/app/shared/models/transaction.model';
 import { AuthenticationService } from 'src/app/shared/services/authentication.service';
 import { AccountService } from 'src/app/shared/services/account.service';
 import { formatDate } from '@angular/common'
+import { isPlatformBrowser } from '@angular/common';
+
 
 @Component({
   selector: 'app-transactions',
@@ -19,12 +21,18 @@ export class TransactionsPage implements OnInit {
   id: number;
   list: Transaction[];
   segment: string = "Tout";
-  segType: string = "month";
+  day: string = "today";
+
+  @ViewChild("chip1") chip1: ElementRef;
+  @ViewChild("chip2") chip2: ElementRef;
+  @ViewChild("chip3") chip3: ElementRef;
+  @ViewChild("chip4") chip4: ElementRef;
 
   constructor(
     public authService: AuthenticationService,
     public jwtHelper: JwtHelperService,
-    public accountService: AccountService
+    public accountService: AccountService,
+    @Inject(PLATFORM_ID) private platformId: Object
     ) { }
 
   async ngOnInit() {
@@ -35,7 +43,7 @@ export class TransactionsPage implements OnInit {
   }
 
   async logout() {
-    console.log("Loging out")
+    console.log("Logging out")
     await this.authService.logout()
   }
 
@@ -47,18 +55,34 @@ export class TransactionsPage implements OnInit {
     let month = ((new Date()).getMonth() == date.getMonth())
     let today = ((new Date()).getDate() == date.getDate()) && month && ((new Date()).getFullYear() == date.getFullYear())
     let yesterday = ((new Date()).getDate() == (date.getDate() + 1)) && month && ((new Date()).getFullYear() == date.getFullYear())
-    month = (month && (this.segType == "month")) || this.segType == "all"
-    today = today && (this.segType == "today") || this.segType == "all"
-    yesterday = yesterday && (this.segType == "yesterday") || this.segType == "all"
-    let seg = (this.segment == "Tout") || ((this.segment == "Sortant") && (transType=="DEPOSIT")) || ((this.segment == "Entrant") && (transType !="DEPOSIT"))
+    month = (month && (this.day == "month")) || this.day == "all"
+    today = today && (this.day == "today") || this.day == "all"
+    yesterday = yesterday && (this.day == "yesterday") || this.day == "all"
+    let seg = (this.segment == "Tout") || ((this.segment == "Entrant") && (transType=="DEPOSIT")) || ((this.segment == "Sortant") && (transType !="DEPOSIT"))
 
     return (month || today || yesterday) && seg;
   }
 
 
-  setSegType(theSegType: string): void{
-    this.segType = theSegType;
-  }
+  // setSegType(theSegType: string, chip: string): void{
+  //   this.segType = theSegType;
+
+
+
+  // if (isPlatformBrowser(this.platformId)) {
+
+    // setTimeout(()=>{
+    //   console.log("Chip: ", this.chip1.nativeElement);
+    //   this.chip1.nativeElement.hover = true;
+      // this.chip2.nativeElement.classList = false;
+      // this.chip3.nativeElement.classList = false;
+      // this.chip4.nativeElement.classList = false;
+
+  //     this[chip].nativeElement.classList.add("highlight");
+
+
+  // },100)
+  // }
 
 }
 

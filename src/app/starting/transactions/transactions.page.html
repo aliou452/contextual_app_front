@@ -18,25 +18,53 @@
       <ion-label color="primary">SORTANT</ion-label>
     </ion-segment-button>
   </ion-segment>
-  <ion-row class="ion-padding-top">
-    <ion-chip (click)="setSegType('today')" color="secondary">
-      <ion-label>Aujourd'hui</ion-label>
-    </ion-chip>
-    <ion-chip (click)="setSegType('yesterday')" color="secondary">
-      <ion-label>Hier</ion-label>
-    </ion-chip>
-    <ion-chip (click)="setSegType('month')" color="secondary">
-      <ion-label>Ce mois</ion-label>
-    </ion-chip>
-    <ion-chip (click)="setSegType('all')" color="secondary">
-      <ion-label>Personnalisé</ion-label>
-    </ion-chip>
-  </ion-row>
+
+    <ion-segment value="today" [(ngModel)]="day">
+    <ion-segment-button value="today">
+      <ion-chip class="ion-text-capitalize ion-margin-start ion-margin-end pad" outline="true" color="primary">Aujourd'hui</ion-chip>
+    </ion-segment-button>
+    <ion-segment-button value="yesterday"  class="ion-no-margin reduce-width">
+      <ion-chip class="ion-text-capitalize ion-no-margin" outline="true" color="primary">Hier</ion-chip>
+    </ion-segment-button>
+    <ion-segment-button value="month">
+      <ion-chip class="ion-text-capitalize ion-no-margin" outline="true" color="primary">Ce mois</ion-chip>
+    </ion-segment-button>
+    <ion-segment-button value="all">
+      <ion-chip class="ion-text-capitalize ion-margin-end ion-margin-start pad" outline="true" color="primary">Personnalisé</ion-chip>
+    </ion-segment-button>
+  </ion-segment>
+
+  <!-- <ion-row class="ion-padding-top">
+    <div #chip1 (click)="setSegType('today', 'chip1')">
+      <ion-chip color="secondary">
+        <ion-label>Aujourd'hui</ion-label>
+      </ion-chip>
+    </div>
+
+    <div #chip2 (click)="setSegType('yesterday', 'chip2')">
+      <ion-chip color="secondary">
+        <ion-label>Hier</ion-label>
+      </ion-chip>
+    </div>
+
+    <div #chip3 (click)="setSegType('month', 'chip3')">
+      <ion-chip color="secondary">
+        <ion-label>Ce mois</ion-label>
+      </ion-chip>
+    </div>
+
+    <div #chip4 (click)="setSegType('all', 'chip4')">
+      <ion-chip color="secondary">
+        <ion-label>Personnalisé</ion-label>
+      </ion-chip>
+    </div> -->
+
+  <!-- </ion-row> -->
 
   <ion-list class="back">
     <ng-container *ngFor="let el of list">
       <ion-item class="ion-margin" *ngIf="show(el.doneAt, el.typeDeposit)" type="button" button detail lines="full">
-        <ion-icon [name]="el.typeDeposit=='DEPOT'?'arrow-down-circle':'arrow-up-circle'"></ion-icon>
+        <ion-icon [name]="el.typeDeposit=='DEPOSIT'?'arrow-down-circle':'arrow-up-circle'"></ion-icon>
         <ion-label>
           <h3>{{el.typeDeposit=='DEPOSIT'?el.dist.number:el.client.number}}</h3>
           <p>{{(el.typeDeposit=="DEPOSIT"?"+":"-") + el.amount}} FCFA

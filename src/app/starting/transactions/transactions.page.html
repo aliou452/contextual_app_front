@@ -1,12 +1,11 @@
-<ion-toolbar>
-  <ion-buttons slot="start">
-    <ion-back-button defaultHref="/starting/account"></ion-back-button>
-  </ion-buttons>
-  <ion-title>Historique des transactions</ion-title>
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/starting/account"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Historique des transactions</ion-title>
+  </ion-toolbar>
 
-</ion-toolbar>
-
-<ion-content>
   <ion-segment value="Tout" [(ngModel)]="segment">
     <ion-segment-button value="Tout">
       <ion-label color="primary">TOUT</ion-label>
@@ -19,49 +18,35 @@
     </ion-segment-button>
   </ion-segment>
 
-    <ion-segment value="today" [(ngModel)]="day">
+  <ion-segment value="today" [(ngModel)]="day" mode="ios" class="marg">
     <ion-segment-button value="today">
-      <ion-chip class="ion-text-capitalize ion-margin-start ion-margin-end pad" outline="true" color="primary">Aujourd'hui</ion-chip>
+      <ion-label outline="true" color="primary">Aujourd'hui</ion-label>
     </ion-segment-button>
-    <ion-segment-button value="yesterday"  class="ion-no-margin reduce-width">
-      <ion-chip class="ion-text-capitalize ion-no-margin" outline="true" color="primary">Hier</ion-chip>
+    <ion-segment-button value="yesterday">
+      <ion-label outline="true" color="primary">Hier</ion-label>
     </ion-segment-button>
     <ion-segment-button value="month">
-      <ion-chip class="ion-text-capitalize ion-no-margin" outline="true" color="primary">Ce mois</ion-chip>
+      <ion-label outline="true" color="primary">Ce mois</ion-label>
     </ion-segment-button>
     <ion-segment-button value="all">
-      <ion-chip class="ion-text-capitalize ion-margin-end ion-margin-start pad" outline="true" color="primary">Personnalisé</ion-chip>
+      <ion-label outline="true" color="primary">Personnalisé</ion-label>
     </ion-segment-button>
   </ion-segment>
 
-  <!-- <ion-row class="ion-padding-top">
-    <div #chip1 (click)="setSegType('today', 'chip1')">
-      <ion-chip color="secondary">
-        <ion-label>Aujourd'hui</ion-label>
-      </ion-chip>
-    </div>
+  <ion-item *ngIf="day=='all'">
+    <ion-datetime
+      displayFormat="DD MMM YYYY"
+      [value]="list[0].doneAt.toISOString()"
+      monthShortNames="janvier, février, mars, avril, mai, juin, juillet, août, septembre, octobre, novembre, décembre"
+  ></ion-datetime>
+    <label class="left-right"> - </label>
+    <ion-datetime [max]="theDate()" displayFormat="DD MMMM YYYY" [value]="theDate()" placeholder="Select Date">
+    </ion-datetime>
+  </ion-item>
+</ion-header>
 
-    <div #chip2 (click)="setSegType('yesterday', 'chip2')">
-      <ion-chip color="secondary">
-        <ion-label>Hier</ion-label>
-      </ion-chip>
-    </div>
-
-    <div #chip3 (click)="setSegType('month', 'chip3')">
-      <ion-chip color="secondary">
-        <ion-label>Ce mois</ion-label>
-      </ion-chip>
-    </div>
-
-    <div #chip4 (click)="setSegType('all', 'chip4')">
-      <ion-chip color="secondary">
-        <ion-label>Personnalisé</ion-label>
-      </ion-chip>
-    </div> -->
-
-  <!-- </ion-row> -->
-
-  <ion-list class="back">
+<ion-content>
+  <ion-list>
     <ng-container *ngFor="let el of list">
       <ion-item class="ion-margin" *ngIf="show(el.doneAt, el.typeDeposit)" type="button" button detail lines="full">
         <ion-icon [name]="el.typeDeposit=='DEPOSIT'?'arrow-down-circle':'arrow-up-circle'"></ion-icon>

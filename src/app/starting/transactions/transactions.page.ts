@@ -1,10 +1,9 @@
-import { Component, ElementRef, OnInit, ViewChild, PLATFORM_ID, Inject } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Transaction } from 'src/app/shared/models/transaction.model';
 import { AuthenticationService } from 'src/app/shared/services/authentication.service';
 import { AccountService } from 'src/app/shared/services/account.service';
 import { formatDate } from '@angular/common'
-import { isPlatformBrowser } from '@angular/common';
 
 
 @Component({
@@ -22,17 +21,12 @@ export class TransactionsPage implements OnInit {
   list: Transaction[];
   segment: string = "Tout";
   day: string = "today";
-
-  @ViewChild("chip1") chip1: ElementRef;
-  @ViewChild("chip2") chip2: ElementRef;
-  @ViewChild("chip3") chip3: ElementRef;
-  @ViewChild("chip4") chip4: ElementRef;
+  customMonthShortNames: string = "janvier, février, mars, avril, mai, juin, juillet, août, septembre, octobre, novembre, décembre"
 
   constructor(
     public authService: AuthenticationService,
     public jwtHelper: JwtHelperService,
     public accountService: AccountService,
-    @Inject(PLATFORM_ID) private platformId: Object
     ) { }
 
   async ngOnInit() {
@@ -63,26 +57,9 @@ export class TransactionsPage implements OnInit {
     return (month || today || yesterday) && seg;
   }
 
-
-  // setSegType(theSegType: string, chip: string): void{
-  //   this.segType = theSegType;
-
-
-
-  // if (isPlatformBrowser(this.platformId)) {
-
-    // setTimeout(()=>{
-    //   console.log("Chip: ", this.chip1.nativeElement);
-    //   this.chip1.nativeElement.hover = true;
-      // this.chip2.nativeElement.classList = false;
-      // this.chip3.nativeElement.classList = false;
-      // this.chip4.nativeElement.classList = false;
-
-  //     this[chip].nativeElement.classList.add("highlight");
-
-
-  // },100)
-  // }
+  theDate(): string{
+    return new Date().toISOString()
+  }
 
 }
 

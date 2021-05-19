@@ -10,19 +10,43 @@
 </ion-toolbar>
 
 <ion-content>
-  <ion-card class="pocket">
-    <ion-card-header>
-      <ion-card-title>Solde du compte</ion-card-title>
-    </ion-card-header>
-    <ion-card-content class="card-content">
-      <ion-label>
-        <h1>
-          <strong>
-            {{pocket}} FCFA
-          </strong>
-        </h1>
-      </ion-label>
-    </ion-card-content>
+
+  <ion-card color="primary" mode="ios">
+    <ion-grid class="ion-no-padding">
+      <ion-row class="ion-no-padding">
+        <ion-col class="ion-no-margin">
+          <ion-card-header mode="ios">
+            <ion-card-title mode="ios">Solde UV</ion-card-title>
+          </ion-card-header>
+          <ion-card-content mode="ios">
+            <ion-label>
+              <h1>
+                <strong>
+                  {{user.pocket}} FCFA
+                </strong>
+              </h1>
+            </ion-label>
+          </ion-card-content>
+        </ion-col>
+
+        <ion-col class="ion-no-margin">
+              <ion-card-header mode="ios">
+                <ion-card-title mode="ios">Seddo</ion-card-title>
+              </ion-card-header>
+              <ion-card-content mode="ios">
+                <ion-label>
+                  <h1>
+                    <strong>
+                      {{user.seddo}} FCFA
+                    </strong>
+                  </h1>
+                </ion-label>
+              </ion-card-content>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+
   </ion-card>
 
   <ion-list class="my-list">
@@ -51,11 +75,6 @@
     </ion-item>
 
   </ion-list>
-
-  <!--
-  <ion-button expand="full" padding (click)="presentModal()">
-    Transférer de l'argent
-  </ion-button> -->
 </ion-content>
 
 <ion-footer>

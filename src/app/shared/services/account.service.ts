@@ -17,8 +17,8 @@ export class AccountService {
     private navCtrl: NavController
     ) { }
 
-  getAccount(): Observable<Transaction[]> {
-    return this.httpClient.get<any[]>(`${environment.serverURL}/api/v1/deposits`)
+  getTransactions(): Observable<Transaction[]> {
+    return this.httpClient.get<any[]>(`${environment.serverURL}/api/v1/transactions`)
     .pipe(
       map((data: any[]) => {
         let trans = [];

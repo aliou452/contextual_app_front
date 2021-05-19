@@ -18,7 +18,7 @@
     </ion-segment-button>
   </ion-segment>
 
-  <ion-segment value="today" [(ngModel)]="day" mode="ios" class="marg">
+  <ion-segment value="today" [(ngModel)]="segmentTime" mode="ios" class="marg">
     <ion-segment-button value="today">
       <ion-label outline="true" color="primary">Aujourd'hui</ion-label>
     </ion-segment-button>
@@ -33,7 +33,7 @@
     </ion-segment-button>
   </ion-segment>
 
-  <ion-item *ngIf="day=='all'">
+  <ion-item *ngIf="segmentTime=='all'">
     <ion-datetime
       displayFormat="DD MMM YYYY"
       [value]="list[0].doneAt.toISOString()"
@@ -48,11 +48,11 @@
 <ion-content>
   <ion-list>
     <ng-container *ngFor="let el of list">
-      <ion-item class="ion-margin" *ngIf="show(el.doneAt, el.typeDeposit)" type="button" button detail lines="full">
-        <ion-icon [name]="el.typeDeposit=='DEPOSIT'?'arrow-down-circle':'arrow-up-circle'"></ion-icon>
+      <ion-item class="ion-margin" *ngIf="show(el.doneAt, el.amount)" type="button" button detail lines="full">
+        <ion-icon [name]="el.amount<0?'arrow-down-circle':'arrow-up-circle'"></ion-icon>
         <ion-label>
-          <h3>{{el.typeDeposit=='DEPOSIT'?el.dist.number:el.client.number}}</h3>
-          <p>{{(el.typeDeposit=="DEPOSIT"?"+":"-") + el.amount}} FCFA
+          <h3>{{transType(el)}}</h3>
+          <p>{{el.amount}} FCFA
             <br>
             {{ format(el.doneAt, 'longDate', "fr") }}
           </p>

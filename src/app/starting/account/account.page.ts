@@ -4,6 +4,7 @@ import { ModalController } from '@ionic/angular';
 import { AuthenticationService } from 'src/app/shared/services/authentication.service';
 import { AccountService } from 'src/app/shared/services/account.service';
 import { TransModalPage } from '../trans-modal/trans-modal.page';
+import { User } from 'src/app/shared/models/user';
 
 @Component({
   selector: 'app-account',
@@ -12,12 +13,8 @@ import { TransModalPage } from '../trans-modal/trans-modal.page';
 })
 export class AccountPage implements OnInit {
 
-  firstName: string;
-  lastName: string;
-  number: string;
-  pocket: number;
-  id: number;
-  data: Account[];
+
+  user: User = new User({});
 
   constructor(
     public authService: AuthenticationService,
@@ -28,20 +25,12 @@ export class AccountPage implements OnInit {
 
   async ngOnInit() {
     await this.authService.getUser().subscribe(
-      res => {
-        console.log("Response:")
-        console.log(JSON.parse(JSON.stringify(res))["firstName"])
-        this.firstName = JSON.parse(JSON.stringify(res))["firstName"]
-        this.lastName = JSON.parse(JSON.stringify(res))["lastName"]
-        this.number = JSON.parse(JSON.stringify(res))["number"]
-        this.pocket = JSON.parse(JSON.stringify(res))["pocket"],
-        this.id = JSON.parse(JSON.stringify(res))["id"]
-        console.log(this.id)
+      user => {
+        this.user = user;
+        console.log("Response:", user.firstName)
       }
     )
-
   }
-
 
   async logout() {
     console.log("Loging out")

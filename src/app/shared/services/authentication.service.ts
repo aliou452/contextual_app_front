@@ -5,6 +5,8 @@ import { Observable, ReplaySubject } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { HTTP } from "@ionic-native/http/ngx";
 import { HttpClient } from '@angular/common/http';
+import { map } from 'rxjs/operators';
+import { User } from '../models/user';
 
 @Injectable({
   providedIn: 'root'
@@ -46,8 +48,14 @@ export class AuthenticationService {
       }
     }
 
-  getUser(): Observable<Object>{
+  getUser(): Observable<User>{
     return this.httpClient.get(`${environment.serverURL}/api/v1/info`)
+    .pipe(
+      map((data: any) => {
+        return new User(data);
+      }
+      )
+    );
   }
 
   logout(): void {

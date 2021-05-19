@@ -20,7 +20,7 @@ export class TransactionsPage implements OnInit {
   id: number;
   list: Transaction[];
   segment: string = "Tout";
-  day: string = "today";
+  segmentTime: string = "today";
   customMonthShortNames: string = "janvier, février, mars, avril, mai, juin, juillet, août, septembre, octobre, novembre, décembre"
 
   constructor(
@@ -30,7 +30,7 @@ export class TransactionsPage implements OnInit {
     ) { }
 
   async ngOnInit() {
-    await this.accountService.getAccount().subscribe(
+    await this.accountService.getTransactions().subscribe(
       res =>
       this.list = res
     );
@@ -45,20 +45,37 @@ export class TransactionsPage implements OnInit {
     return formatDate(value, format, locale, timezone);
   }
 
-  show(date: Date, transType: string): Boolean{
-    let month = ((new Date()).getMonth() == date.getMonth())
-    let today = ((new Date()).getDate() == date.getDate()) && month && ((new Date()).getFullYear() == date.getFullYear())
-    let yesterday = ((new Date()).getDate() == (date.getDate() + 1)) && month && ((new Date()).getFullYear() == date.getFullYear())
-    month = (month && (this.day == "month")) || this.day == "all"
-    today = today && (this.day == "today") || this.day == "all"
-    yesterday = yesterday && (this.day == "yesterday") || this.day == "all"
-    let seg = (this.segment == "Tout") || ((this.segment == "Entrant") && (transType=="DEPOSIT")) || ((this.segment == "Sortant") && (transType !="DEPOSIT"))
+  show(date: Date, amount: number): Boolean{
+    let now: Date = new Date()
+    let month = (now.getMonth() == date.getMonth()) && (this.segmentTime == "month")
+    let today = (now.getDate() == date.getDate()) && (now.getMonth() == date.getMonth()) && (now.getFullYear() == date.getFullYear()) && (this.segmentTime == "today")
+    let yesterday = (now.getDate() == (date.getDate() + 1)) && month && (now.getFullYear() == date.getFullYear()) && (this.segmentTime == "yesterday")
 
-    return (month || today || yesterday) && seg;
+    let seg = (this.segment == "Tout") || ((this.segment == "Entrant") && (amount>0)) || ((this.segment == "Sortant") && (amount<0))
+
+    return (month || today || yesterday || this.segmentTime == "all") && seg;
   }
 
   theDate(): string{
     return new Date().toISOString()
+  }
+
+  transType(transaction: Transaction): string{
+    if(transaction.transactionType=="MONEY_WITHDRAW"){
+      return "Retrait OM client: " + transaction.client.number;
+    }
+    if(transaction.amount>0){
+      if(transaction.transactionType=="MONEY"){
+        return "Commande UV"
+      } else{
+        return "Commande Seddo"
+      }
+    }
+
+    if(transaction.transactionType=="MONEY"){
+      return "Dépot OM"
+    }
+    return "Dépot seddo"
   }
 
 }

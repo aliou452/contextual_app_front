@@ -19,7 +19,7 @@ export class LoginPage implements OnInit {
   }
 
   login() {
-    let user: User = {username: this.number, password: this.code}
+    let user: User = new User({username: this.number, password: this.code})
     this.authService.login(user)
 
   }

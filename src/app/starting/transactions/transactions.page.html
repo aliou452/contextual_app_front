@@ -34,13 +34,12 @@
   </ion-segment>
 
   <ion-item *ngIf="segmentTime=='all'">
-    <ion-datetime
-      displayFormat="DD MMM YYYY"
-      [value]="list[0].doneAt.toISOString()"
-      monthShortNames="janvier, février, mars, avril, mai, juin, juillet, août, septembre, octobre, novembre, décembre"
-  ></ion-datetime>
+    <ion-datetime displayFormat="DD MMM YYYY" [value]="list[0].doneAt.toISOString()"
+      monthShortNames="janvier, février, mars, avril, mai, juin, juillet, août, septembre, octobre, novembre, décembre">
+    </ion-datetime>
     <label class="left-right"> - </label>
-    <ion-datetime [max]="theDate()" displayFormat="DD MMMM YYYY" [value]="theDate()" placeholder="Select Date">
+    <ion-datetime displayFormat="DD MMM YYYY" [value]="list[0].doneAt.toISOString()"
+      monthShortNames="janvier, février, mars, avril, mai, juin, juillet, août, septembre, octobre, novembre, décembre">
     </ion-datetime>
   </ion-item>
 </ion-header>
@@ -48,15 +47,45 @@
 <ion-content>
   <ion-list>
     <ng-container *ngFor="let el of list">
-      <ion-item class="ion-margin" *ngIf="show(el.doneAt, el.amount)" type="button" button detail lines="full">
-        <ion-icon [name]="el.amount<0?'arrow-down-circle':'arrow-up-circle'"></ion-icon>
-        <ion-label>
-          <h3>{{transType(el)}}</h3>
-          <p>{{el.amount}} FCFA
-            <br>
-            {{ format(el.doneAt, 'longDate', "fr") }}
-          </p>
-        </ion-label>
+      <ion-item class="ion-no-margin ion-no-padding" *ngIf="show(el.doneAt, el.amount)" type="button" button
+        lines="full">
+        <ion-grid>
+          <ion-row>
+            <ion-col size=1.5>
+              <ion-row>
+                <ion-col>
+                  <ion-icon size="large" [name]="el.amount<0?'arrow-up-circle':'arrow-down-circle'"></ion-icon>
+                </ion-col>
+              </ion-row>
+            </ion-col>
+            <ion-col size=10.5>
+              <ion-row>
+                <ion-col size=8>
+                  <ion-label>
+                    {{el.amount>0 && el.transactionType!="MONEY_WITHDRAW"?"Mon numéro":el.client.number}}
+                  </ion-label>
+                </ion-col>
+                <ion-col size=4>
+                  <ion-note [color]="el.amount>0?'success':'primary'">{{(el.amount>0?"+":"") + el.amount + "F CFA"}}
+                  </ion-note>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col size=8>
+                  <ion-note>
+                    {{transType(el)}}
+                  </ion-note>
+                </ion-col>
+                <ion-col size=4>
+                  <ion-note>{{
+                    (segmentTime=="today"||segmentTime=="yesterday")?format(el.doneAt,'shortTime','fr'):format(el.doneAt,"short","fr")}}
+                  </ion-note>
+                </ion-col>
+              </ion-row>
+            </ion-col>
+          </ion-row>
+
+        </ion-grid>
       </ion-item>
     </ng-container>
 

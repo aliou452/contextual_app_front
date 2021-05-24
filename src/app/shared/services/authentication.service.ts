@@ -7,6 +7,7 @@ import { HTTP } from "@ionic-native/http/ngx";
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { User } from '../models/user';
+import { from } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -67,7 +68,7 @@ export class AuthenticationService {
   login(values: { username: string, password: string }) {
     this.http.setDataSerializer("json")
 
-     this.http.post(`${environment.serverURL}/login`,
+    return from(this.http.post(`${environment.serverURL}/login`,
             {username: values.username, password: values.password},
             {'Content-Type': 'application/json'}
           )
@@ -80,6 +81,7 @@ export class AuthenticationService {
         console.log("Error: ")
         console.log(JSON.stringify(error));
       }
+    )
     );
   }
 

@@ -14,7 +14,9 @@ export class NativeHttpInterceptor implements HttpInterceptor {
   ) { }
 
   public intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    if (!this.platform.is('cordova')) { return next.handle(request); }
+    if (!this.platform.is('cordova')) {
+      return next.handle(request);
+    }
 
     return from(this.handleNativeRequest(request));
   }

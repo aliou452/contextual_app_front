@@ -1,5 +1,5 @@
 ion-item{
-  --border-color: #ff7300;
+  --border-color: #cec2c2fa;
 }
 
 .marg{
@@ -8,5 +8,10 @@ ion-item{
 
 .left-right{
   margin: 0 48px;
+}
+
+ion-grid{
+  --ion-grid-padding: 0px;
+  --ion-grid-column-padding: 2px;
 }
 

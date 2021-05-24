@@ -16,6 +16,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NativeHttpInterceptor } from './interceptor/native-http.interceptor';
 import { registerLocaleData } from '@angular/common';
 import localeFr from '@angular/common/locales/fr';
+import { LoadingInterceptor } from './interceptor/loading.interceptor';
 
 registerLocaleData(localeFr);
 
@@ -48,7 +49,6 @@ export function tokenGetter(): string | null {
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     { provide: HTTP_INTERCEPTORS, useClass: NativeHttpInterceptor, multi: true },
     HTTP,
-    // { provide: LOCALE_ID, useValue: "fr-GF" }
   ],
   bootstrap: [AppComponent],
 })

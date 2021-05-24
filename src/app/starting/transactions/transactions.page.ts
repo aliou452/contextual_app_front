@@ -21,7 +21,7 @@ export class TransactionsPage implements OnInit {
   list: Transaction[];
   segment: string = "Tout";
   segmentTime: string = "today";
-  customMonthShortNames: string = "janvier, février, mars, avril, mai, juin, juillet, août, septembre, octobre, novembre, décembre"
+  // customMonthShortNames: string = "janvier, février, mars, avril, mai, juin, juillet, août, septembre, octobre, novembre, décembre"
 
   constructor(
     public authService: AuthenticationService,
@@ -49,7 +49,7 @@ export class TransactionsPage implements OnInit {
     let now: Date = new Date()
     let month = (now.getMonth() == date.getMonth()) && (this.segmentTime == "month")
     let today = (now.getDate() == date.getDate()) && (now.getMonth() == date.getMonth()) && (now.getFullYear() == date.getFullYear()) && (this.segmentTime == "today")
-    let yesterday = (now.getDate() == (date.getDate() + 1)) && month && (now.getFullYear() == date.getFullYear()) && (this.segmentTime == "yesterday")
+    let yesterday = (now.getDate() == (date.getDate() + 1)) && (now.getMonth() == date.getMonth()) && (now.getFullYear() == date.getFullYear()) && (this.segmentTime == "yesterday")
 
     let seg = (this.segment == "Tout") || ((this.segment == "Entrant") && (amount>0)) || ((this.segment == "Sortant") && (amount<0))
 
@@ -62,20 +62,20 @@ export class TransactionsPage implements OnInit {
 
   transType(transaction: Transaction): string{
     if(transaction.transactionType=="MONEY_WITHDRAW"){
-      return "Retrait OM client: " + transaction.client.number;
+      return "Retrait OM effectué";
     }
     if(transaction.amount>0){
       if(transaction.transactionType=="MONEY"){
-        return "Commande UV"
+        return "Commande UV effectuée"
       } else{
-        return "Commande Seddo"
+        return "Commande Seddo effectuée"
       }
     }
 
     if(transaction.transactionType=="MONEY"){
-      return "Dépot OM"
+      return "Dépot OM effectué"
     }
-    return "Dépot seddo"
+    return "Dépot seddo effectué"
   }
 
 }

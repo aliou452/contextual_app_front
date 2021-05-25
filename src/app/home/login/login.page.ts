@@ -24,7 +24,7 @@ export class LoginPage implements OnInit {
   }
 
   async login() {
-    this.loaderService.showLoader().then(() => {
+    this.loaderService.showLoader(4000).then(() => {
       let user: User = new User({username: this.number, password: this.code});
       this.authService.login(user).subscribe(_ => {
         console.log("Logged in");

@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/starting"></ion-back-button>
     </ion-buttons>
-    <ion-title>Commander UV</ion-title>
+    <ion-title>{{orderType}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -12,14 +12,14 @@
     <ion-label>
       Montant:
     </ion-label>
-    <ion-input [(ngModel)]="amount"></ion-input>
+    <ion-input inputmode="tel" required [(ngModel)]="amount"></ion-input>
   </ion-item>
 
   <ion-item>
     <ion-label>
       Code secret:
     </ion-label>
-    <ion-input [(ngModel)]="code" type="password"></ion-input>
+    <ion-input [(ngModel)]="code" required type="password" inputmode="numeric"></ion-input>
   </ion-item>
 
 

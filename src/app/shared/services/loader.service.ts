@@ -22,12 +22,12 @@ export class LoaderService {
     }
   }
 
-  async showLoader() {
+  async showLoader(time: number) {
     if (!this.isShowingLoader) {
       this.isShowingLoader = true
       this.loader = await this.loadingController.create({
         message: 'Please wait',
-        duration: 4000,
+        duration: time,
         mode: 'ios',
         translucent: true
       });

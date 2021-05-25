@@ -45,6 +45,9 @@
 </ion-header>
 
 <ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
   <ion-list>
     <ng-container *ngFor="let el of list">
       <ion-item class="ion-no-margin ion-no-padding" *ngIf="show(el.doneAt, el.amount)" type="button" button

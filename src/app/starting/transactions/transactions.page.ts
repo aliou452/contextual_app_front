@@ -21,7 +21,6 @@ export class TransactionsPage implements OnInit {
   list: Transaction[];
   segment: string = "Tout";
   segmentTime: string = "today";
-  // customMonthShortNames: string = "janvier, février, mars, avril, mai, juin, juillet, août, septembre, octobre, novembre, décembre"
 
   constructor(
     public authService: AuthenticationService,
@@ -34,6 +33,16 @@ export class TransactionsPage implements OnInit {
       res =>
       this.list = res
     );
+  }
+
+  async doRefresh(event) {
+    console.log('Begin async operation');
+
+    await this.accountService.getTransactions().subscribe(
+      res =>
+      this.list = res
+    );
+    event.target.complete();
   }
 
   async logout() {

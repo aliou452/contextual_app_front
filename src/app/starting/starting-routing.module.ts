@@ -27,14 +27,6 @@ const routes: Routes = [
       }
     ]
   },
-  {
-    path: 'commande',
-    loadChildren: () => import('./commande/commande.module').then( m => m.CommandePageModule)
-  },
-  {
-    path: 'seddo',
-    loadChildren: () => import('./seddo/seddo.module').then( m => m.SeddoPageModule)
-  }
 
 ];
 

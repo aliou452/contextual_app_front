@@ -50,13 +50,13 @@
   </ion-card>
 
   <ion-list class="my-list">
-    <ion-item button detail routerLink="../commande">
+    <ion-item button detail (click)="presentMod('UV')">
       <ion-label>
         Commande UV
       </ion-label>
     </ion-item>
 
-    <ion-item button detail routerLink="../seddo">
+    <ion-item button detail (click)="presentMod('Seddo')">
       <ion-label>
         Commande SEDDO
       </ion-label>

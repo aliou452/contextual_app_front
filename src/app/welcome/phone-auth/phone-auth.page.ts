@@ -34,7 +34,7 @@ export class PhoneAuthPage implements OnInit {
       'size': 'invisible',
       'callback': (response) => {
         // reCAPTCHA solved - will proceed with submit function
-        console.log(response)
+        // console.log(response)
       }
     });
   }
@@ -44,14 +44,13 @@ export class PhoneAuthPage implements OnInit {
     const num = "+221" + this.numero.toString();
     localStorage.setItem("phoneNumber", this.numero.toString())
     const appVerifier = this.window.recaptchaVerifier;
-    console.log("appVerifier", appVerifier)
 
     firebase.default.auth().signInWithPhoneNumber(num, appVerifier)
       .then(async result => {
         this.verifCode = await this.presentModal();
-        console.log("Verification code: ", this.verifCode.toString())
+        // console.log("Verification code: ", this.verifCode.toString())
         result.confirm(this.verifCode.toString()).then((result) => {
-          console.log(result.user)
+          console.log("User result", result.user)
 
           this.zone.run(() => {
             this.router.navigate(['/home']);

@@ -1,10 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { ModalController } from '@ionic/angular';
+import { IonRouterOutlet, ModalController } from '@ionic/angular';
 import { AuthenticationService } from 'src/app/shared/services/authentication.service';
 import { AccountService } from 'src/app/shared/services/account.service';
 import { TransModalPage } from '../trans-modal/trans-modal.page';
 import { User } from 'src/app/shared/models/user';
+import { ModalBaseComponent } from 'src/app/components/modal-base/modal-base.component';
+import { CommandePage } from 'src/app/pages/commande/commande.page';
+import { NavigationExtras, Router } from '@angular/router';
 
 @Component({
   selector: 'app-account',
@@ -20,7 +23,9 @@ export class AccountPage implements OnInit {
     public authService: AuthenticationService,
     public jwtHelper: JwtHelperService,
     public accountService: AccountService,
-    public modalController: ModalController
+    public modalController: ModalController,
+    private routerOutlet: IonRouterOutlet,
+    private router: Router
     ) { }
 
   async ngOnInit() {
@@ -47,5 +52,28 @@ export class AccountPage implements OnInit {
     });
     return await modal.present();
   }
+
+  async presentMod(typ: string) {
+    const modal = await this.modalController.create({
+      presentingElement: this.routerOutlet.nativeEl,
+      component: ModalBaseComponent,
+      componentProps: {
+        rootPage: CommandePage,
+        orderType: typ,
+      },
+    });
+
+    await modal.present();
+
+    await modal.onWillDismiss().then( _ => {
+      this.authService.getUser().subscribe(
+        user => {
+          this.user = user;
+          console.log("Response:", user.firstName)
+        }
+      );
+    })
+  }
+
 
 }

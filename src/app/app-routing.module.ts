@@ -15,6 +15,11 @@ const routes: Routes = [
     path: 'starting',
     loadChildren: () => import('./starting/starting.module').then( m => m.StartingPageModule)
   },
+  {
+    path: 'commande',
+    loadChildren: () => import('./pages/commande/commande.module').then( m => m.CommandePageModule)
+  },
+
   // {
   //   path: '',
   //   redirectTo: 'home',

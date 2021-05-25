@@ -16,7 +16,6 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NativeHttpInterceptor } from './interceptor/native-http.interceptor';
 import { registerLocaleData } from '@angular/common';
 import localeFr from '@angular/common/locales/fr';
-import { LoadingInterceptor } from './interceptor/loading.interceptor';
 
 registerLocaleData(localeFr);
 

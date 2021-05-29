@@ -1,30 +1,36 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="/starting"></ion-back-button>
+      <ion-button (click)="dismiss()">
+        <ion-icon color="primary" size="large" name="arrow-back-outline"></ion-icon>
+      </ion-button>
     </ion-buttons>
-    <ion-title>{{orderType}}</ion-title>
+    <ion-title>{{"Commander " + orderType}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-item>
-    <ion-label>
-      Montant:
-    </ion-label>
-    <ion-input inputmode="tel" required [(ngModel)]="amount"></ion-input>
-  </ion-item>
 
-  <ion-item>
-    <ion-label>
-      Code secret:
-    </ion-label>
-    <ion-input [(ngModel)]="code" required type="password" inputmode="numeric"></ion-input>
-  </ion-item>
-
-
+  <ion-grid>
+    <ion-row>
+      <ion-item>
+        <ion-label>
+          Montant:
+        </ion-label>
+        <ion-input inputmode="tel" required [(ngModel)]="amount"></ion-input>
+      </ion-item>
+    </ion-row>
+    <ion-row>
+      <ion-item>
+        <ion-label>
+          Code secret:
+        </ion-label>
+        <ion-input [(ngModel)]="code" required type="password" inputmode="numeric"></ion-input>
+      </ion-item>
+    </ion-row>
+  </ion-grid>
 </ion-content>
 
 <ion-footer>
-    <ion-button expand="full" (click)="order()">Soumettre</ion-button>
+  <ion-button expand="full" (click)="order()">Soumettre</ion-button>
 </ion-footer>

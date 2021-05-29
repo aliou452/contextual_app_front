@@ -18,7 +18,15 @@ const routes: Routes = [
   {
     path: 'commande',
     loadChildren: () => import('./pages/commande/commande.module').then( m => m.CommandePageModule)
+  },  {
+    path: 'reposit-withdraw',
+    loadChildren: () => import('./pages/reposit-withdraw/reposit-withdraw.module').then( m => m.RepositWithdrawPageModule)
   },
+  {
+    path: 'confirmation',
+    loadChildren: () => import('./pages/confirmation/confirmation.module').then( m => m.ConfirmationPageModule)
+  },
+
 
   // {
   //   path: '',

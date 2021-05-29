@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button color="primary" (click)="dismiss()">
+        <ion-icon size="large" name="arrow-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>{{"Faire un " + (transType=="depot"?"dépôt":"retrait")}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item class="elevation ion-padding ion-margin" lines="none">
+    <ion-icon slot="start" name="phone-portrait-outline" class="phone-icon"></ion-icon>
+    <ion-label position="fixed">+221</ion-label>
+    <ion-input [(ngModel)]="receiver" inputmode="tel" placeholder="Bénéficiaire"></ion-input>
+    <!-- <ion-input>{{"+221" + receiver }}</ion-input> -->
+    <!-- <ion-badge (click)="chooseUser()" mode="ios" class="change-chip" color="primary">Changer</ion-badge> -->
+  </ion-item>
+
+  <ion-list>
+    <ion-item button (click)="takeClient('771847904')">
+      <ion-label>Khalide KANE</ion-label>
+      <ion-note slot="end">771847904</ion-note>
+      <!-- <ion-input clearInput [(ngModel)]="amount" inputmode="tel" placeholder="Montant"></ion-input> -->
+    </ion-item>
+    <ion-item>
+      <ion-label>Issa DIOP</ion-label>
+      <ion-note slot="end">771700145</ion-note>
+      <!-- <ion-input clearInput [(ngModel)]="amount" inputmode="tel" placeholder="Montant"></ion-input> -->
+    </ion-item>
+  </ion-list>
+
+</ion-content>
+
+<ion-footer>
+  <ion-button expand="full" (click)="goForward()">
+    Suivant
+  </ion-button>
+</ion-footer>

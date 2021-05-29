@@ -1,5 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
 import { ModalController, NavParams } from '@ionic/angular';
 import { AccountService } from 'src/app/shared/services/account.service';
 import { LoaderService } from 'src/app/shared/services/loader.service';
@@ -22,8 +21,12 @@ export class CommandePage implements OnInit {
     ) { }
 
   ngOnInit() {
-    this.orderType = this.navParams.get('data')
-    console.log("OrderType" ,this.orderType)
+    this.orderType = this.navParams.get('data');
+    console.log("OrderType" ,this.orderType);
+  }
+
+  dismiss(){
+    this.modalController.dismiss();
   }
 
   order(){

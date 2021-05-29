@@ -9,6 +9,7 @@ import { AccountPageRoutingModule } from './account-routing.module';
 import { AccountPage } from './Account.page';
 import { SharedComponentsModule } from 'src/app/components/shared-components.module';
 import { CommandePageModule } from 'src/app/pages/commande/commande.module';
+import { RepositWithdrawPageModule } from 'src/app/pages/reposit-withdraw/reposit-withdraw.module';
 
 @NgModule({
   imports: [
@@ -18,6 +19,7 @@ import { CommandePageModule } from 'src/app/pages/commande/commande.module';
     AccountPageRoutingModule,
     SharedComponentsModule,
     CommandePageModule,
+    RepositWithdrawPageModule
   ],
   declarations: [AccountPage]
 })

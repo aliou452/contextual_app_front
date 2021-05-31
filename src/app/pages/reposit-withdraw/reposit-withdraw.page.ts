@@ -26,16 +26,11 @@ export class RepositWithdrawPage implements OnInit {
     private modalController: ModalController,
     private navParams: NavParams,
     private nav: IonNav,
-    private accounService: AccountService) { }
+    private accountService: AccountService) { }
 
   ngOnInit() {
     this.transType = this.navParams.get('data');
-    console.log("OrderType" ,this.transType);
-
-    this.accounService.getClDist().subscribe( data => {
-      this.listCl = data;
-    }
-      )
+    this.accountService.getClDist().subscribe( data => this.listCl = data);
   }
 
   dismiss(){
@@ -58,7 +53,7 @@ export class RepositWithdrawPage implements OnInit {
 
   next(){
     if(this.receiver.length == 9) {
-      this.accounService.getClient(this.receiver).subscribe(client =>
+      this.accountService.getClient(this.receiver).subscribe(client =>
         {
           this.receiver = client.number;
         });

@@ -28,7 +28,7 @@ export class PasswordPage implements OnInit {
   send() {
     console.log(this.receiver, this.amount, this.password)
     if(this.typeTrans=="depot")
-    this.accountService.depot(this.receiver, this.amount, this.password, this.typeDep).subscribe(
+    this.accountService.depot(this.receiver, this.amount, this.password).subscribe(
       () => {
         console.log("Success");
         this.zone.runOutsideAngular(() => {

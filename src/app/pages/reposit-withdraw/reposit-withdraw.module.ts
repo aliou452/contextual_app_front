@@ -7,7 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { RepositWithdrawPageRoutingModule } from './reposit-withdraw-routing.module';
 
 import { RepositWithdrawPage } from './reposit-withdraw.page';
-import { ConfirmationPageModule } from '../confirmation/confirmation.module';
+import { MontantPageModule } from '../depot-retrait/montant/montant.module';
 
 @NgModule({
   imports: [
@@ -15,7 +15,7 @@ import { ConfirmationPageModule } from '../confirmation/confirmation.module';
     FormsModule,
     IonicModule,
     RepositWithdrawPageRoutingModule,
-    ConfirmationPageModule
+    MontantPageModule
   ],
   declarations: [RepositWithdrawPage]
 })

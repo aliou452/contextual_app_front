@@ -3,8 +3,11 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
 import { map } from "rxjs/operators";
-import { NavController } from '@ionic/angular';
 import { Transaction } from '../models/transaction.model';
+import { Client } from '../models/client.model';
+import { PinDialog } from '@ionic-native/pin-dialog/ngx';
+import { Platform } from '@ionic/angular';
+
 
 
 @Injectable({
@@ -14,7 +17,8 @@ export class AccountService {
 
   constructor(
     private httpClient: HttpClient,
-    private navCtrl: NavController
+    private pinDialog: PinDialog,
+    private platform: Platform
     ) { }
 
   getTransactions(): Observable<Transaction[]> {
@@ -28,9 +32,15 @@ export class AccountService {
     )
   }
 
-  depot(receiver: string, amount: number, password: string, typeDep: string) {
+  depot(receiver: string, amount: number, password: string) {
     return this.httpClient.post(`${environment.serverURL}/api/v1/deposits`,{
-      number: receiver, amount: amount, code: password, type: typeDep
+      number: receiver, amount: amount, code: password, type: "MONEY"
+    })
+  }
+
+  seddo(receiver: string, amount: number, password: string) {
+    return this.httpClient.post(`${environment.serverURL}/api/v1/deposits`,{
+      number: receiver, amount: amount, code: password, type: "SEDDO"
     })
   }
 
@@ -44,5 +54,19 @@ export class AccountService {
     return this.httpClient.post(`${environment.serverURL}/api/v1/orders`,{
       amount: amount, code: code, typeOrder: typeOrder
     })
+  }
+
+  getClDist(): Observable<Client[]>{
+    return this.httpClient.get<Client[]>(`${environment.serverURL}/api/v1/cldist`);
+  }
+
+  getClient(num: string): Observable<Client>{
+    return this.httpClient.get<Client>(`${environment.serverURL}/api/v1/clients/${num}`)
+  }
+
+  pinDialogFunc() {
+    return this.platform.ready().then(() =>
+      this.pinDialog.prompt('', 'Entrez votre code', ['OK', 'Annuler'])
+    )
   }
 }

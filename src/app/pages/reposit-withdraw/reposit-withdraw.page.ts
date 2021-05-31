@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { IonNav, IonRouterOutlet, ModalController, NavParams } from '@ionic/angular';
 import { ModalBaseComponent } from 'src/app/components/modal-base/modal-base.component';
+import { Client } from 'src/app/shared/models/client.model';
+import { AccountService } from 'src/app/shared/services/account.service';
 import { EnvoiPage } from 'src/app/starting/envoi/envoi.page';
 import { ConfirmationPage } from '../confirmation/confirmation.page';
+import { MontantPage } from '../depot-retrait/montant/montant.page';
 
 @Component({
   selector: 'app-reposit-withdraw',
@@ -13,18 +16,26 @@ export class RepositWithdrawPage implements OnInit {
 
   receiver: string="";
   transType: string;
-  nextPage: any = ConfirmationPage;
+  nextPage: any = MontantPage;
   chooseUserPage: any
+  listCl: Client[];
+  name: string = "";
 
 
   constructor(
     private modalController: ModalController,
-    public navParams: NavParams,
-    private nav: IonNav,) { }
+    private navParams: NavParams,
+    private nav: IonNav,
+    private accounService: AccountService) { }
 
   ngOnInit() {
     this.transType = this.navParams.get('data');
     console.log("OrderType" ,this.transType);
+
+    this.accounService.getClDist().subscribe( data => {
+      this.listCl = data;
+    }
+      )
   }
 
   dismiss(){
@@ -32,15 +43,26 @@ export class RepositWithdrawPage implements OnInit {
   }
 
   async goForward() {
-    this.nav.push(this.nextPage, {receiver: this.receiver, transType: this.transType});
+    this.nav.push(this.nextPage, {receiver: this.receiver, transType: this.transType, name: this.name});
   }
 
   chooseUser() {
     this.nav.push(this.chooseUserPage);
   }
 
-  takeClient(num: string) {
-    this.receiver = num;
+  takeClient(el: Client) {
+    this.receiver = el.number;
+    this.name = el.firstName + " " + el.lastName;
+    this.goForward()
+  }
 
+  next(){
+    if(this.receiver.length == 9) {
+      this.accounService.getClient(this.receiver).subscribe(client =>
+        {
+          this.receiver = client.number;
+        });
+    }
+    this.goForward()
   }
 }

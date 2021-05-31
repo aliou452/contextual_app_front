@@ -26,6 +26,10 @@ const routes: Routes = [
     path: 'confirmation',
     loadChildren: () => import('./pages/confirmation/confirmation.module').then( m => m.ConfirmationPageModule)
   },
+  {
+    path: 'montant',
+    loadChildren: () => import('./pages/depot-retrait/montant/montant.module').then( m => m.MontantPageModule)
+  },
 
 
   // {

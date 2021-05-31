@@ -14,27 +14,18 @@
     <ion-icon slot="start" name="phone-portrait-outline" class="phone-icon"></ion-icon>
     <ion-label position="fixed">+221</ion-label>
     <ion-input [(ngModel)]="receiver" inputmode="tel" placeholder="Bénéficiaire"></ion-input>
-    <!-- <ion-input>{{"+221" + receiver }}</ion-input> -->
-    <!-- <ion-badge (click)="chooseUser()" mode="ios" class="change-chip" color="primary">Changer</ion-badge> -->
   </ion-item>
 
-  <ion-list>
-    <ion-item button (click)="takeClient('771847904')">
-      <ion-label>Khalide KANE</ion-label>
-      <ion-note slot="end">771847904</ion-note>
-      <!-- <ion-input clearInput [(ngModel)]="amount" inputmode="tel" placeholder="Montant"></ion-input> -->
-    </ion-item>
-    <ion-item>
-      <ion-label>Issa DIOP</ion-label>
-      <ion-note slot="end">771700145</ion-note>
-      <!-- <ion-input clearInput [(ngModel)]="amount" inputmode="tel" placeholder="Montant"></ion-input> -->
+  <ion-list *ngFor="let el of listCl">
+    <ion-item button (click)="takeClient(el)">
+      <ion-label>{{el.firstName + " " + el.lastName}}</ion-label>
+      <ion-note slot="end">{{el.number}}</ion-note>
     </ion-item>
   </ion-list>
-
 </ion-content>
 
 <ion-footer>
-  <ion-button expand="full" (click)="goForward()">
+  <ion-button expand="full" (click)="next()">
     Suivant
   </ion-button>
 </ion-footer>

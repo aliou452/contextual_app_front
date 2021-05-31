@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button color="primary" (click)="dismiss()">
+        <ion-icon size="large" name="arrow-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>{{"Envoyer à " + (name==""?receiver:name)}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item>
+    <ion-label position="fixed">Montant:</ion-label>
+    <ion-input type="tel" [(ngModel)]="amount"></ion-input>
+    <ion-label class="left">F CFA</ion-label>
+  </ion-item>
+</ion-content>
+
+<ion-footer>
+  <ion-button expand="full" (click)="next()">
+    Suivant
+  </ion-button>
+</ion-footer>

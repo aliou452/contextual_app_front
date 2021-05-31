@@ -1,7 +1,34 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="end">
+      <ion-back-button color="primary" icon="close"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Récapitulation de la transaction</ion-title>
+  </ion-toolbar>
+</ion-header>
+
 <ion-content>
-  <ion-item class="ion-padding ion-margin" lines="none">
-    <ion-label position="floating">Montant à envoyer</ion-label>
-    <ion-input [(ngModel)]="amount"></ion-input>
-    <ion-input value="FCFA" readonly></ion-input>
-  </ion-item>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-subtitle>Montant:</ion-card-subtitle>
+      <ion-card-title>{{amount + "   F CFA"}}</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-header>
+      <ion-card-subtitle>Envoyé à:</ion-card-subtitle>
+      <ion-card-title>{{receiver}}</ion-card-title>
+    </ion-card-header>
+  </ion-card>
+
+
+  <ion-button fill="outline" expand="block" (click)="back()">Modifier</ion-button>
+
+
 </ion-content>
+
+<ion-footer>
+  <ion-button expand="full" (click)="next()">
+    Confirmer
+  </ion-button>
+</ion-footer>

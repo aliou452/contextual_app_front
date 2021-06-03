@@ -11,24 +11,13 @@
 
 <ion-content>
 
-  <ion-grid>
-    <ion-row>
-      <ion-item>
-        <ion-label>
-          Montant:
-        </ion-label>
-        <ion-input inputmode="tel" required [(ngModel)]="amount"></ion-input>
-      </ion-item>
-    </ion-row>
-    <ion-row>
-      <ion-item>
-        <ion-label>
-          Code secret:
-        </ion-label>
-        <ion-input [(ngModel)]="code" required type="password" inputmode="numeric"></ion-input>
-      </ion-item>
-    </ion-row>
-  </ion-grid>
+  <ion-item class="amount">
+    <ion-label>
+      Montant:
+    </ion-label>
+    <ion-input inputmode="tel" required [(ngModel)]="amount"></ion-input>
+  </ion-item>
+
 </ion-content>
 
 <ion-footer>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NavParams, IonNav, ModalController } from '@ionic/angular';
 import { AccountService } from 'src/app/shared/services/account.service';
+import { AuthenticationService } from 'src/app/shared/services/authentication.service';
 import { LoaderService } from 'src/app/shared/services/loader.service';
 
 @Component({
@@ -21,6 +22,7 @@ export class ConfirmationPage implements OnInit {
     private accountService: AccountService,
     private modalCtrl: ModalController,
     private loadingService: LoaderService,
+    private authService: AuthenticationService,
   ) { }
 
   ngOnInit() {
@@ -41,6 +43,8 @@ export class ConfirmationPage implements OnInit {
           this.code = result.input1;
           this.loadingService.showLoader(4000);
           this.accountService[this.transType=="depot-seddo"?"seddo":this.transType](this.receiver, this.amount, this.code).subscribe(() => {
+            this.accountService.getTransactions();
+            this.authService.getUser();
             this.modalCtrl.dismiss();
             this.loadingService.stopLoader();
           });

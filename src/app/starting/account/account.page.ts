@@ -17,6 +17,9 @@ export class AccountPage implements OnInit {
 
 
   user: User = new User({});
+  slideOpts = {
+    slidesPerView: 1.2,
+  }
 
   constructor(
     public authService: AuthenticationService,
@@ -27,7 +30,8 @@ export class AccountPage implements OnInit {
     ) { }
 
   async ngOnInit() {
-    await this.authService.getUser().subscribe(
+    this.authService.getUser();
+    await this.authService.userObs.subscribe(
       user => {
         this.user = user;
         console.log("Response:", user.firstName);
@@ -52,13 +56,13 @@ export class AccountPage implements OnInit {
 
     await modal.present();
 
-    await modal.onWillDismiss().then( _ => {
-      this.authService.getUser().subscribe(
-        user => {
-          this.user = user;
-          console.log("Response:", user.firstName);
-        }
-      );
-    })
+    // await modal.onWillDismiss().then( _ => {
+    //   this.authService.getUser().subscribe(
+    //     user => {
+    //       this.user = user;
+    //       console.log("Response:", user.firstName);
+    //     }
+    //   );
+    // })
   }
 }

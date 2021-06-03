@@ -19,6 +19,9 @@ export class AuthenticationService {
   private authUser = new ReplaySubject<String | null>(1);
   public AuthUserObservable = this.authUser.asObservable();
 
+  private _user = new ReplaySubject<User>(1);
+  public userObs = this._user.asObservable();
+
   constructor(
     private http: HTTP,
     private httpClient: HttpClient,
@@ -49,14 +52,13 @@ export class AuthenticationService {
       }
     }
 
-  getUser(): Observable<User>{
-    return this.httpClient.get(`${environment.serverURL}/api/v1/info`)
+  getUser(){
+    this.httpClient.get(`${environment.serverURL}/api/v1/info`)
     .pipe(
       map((data: any) => {
         return new User(data);
-      }
-      )
-    );
+      }))
+      .subscribe(user => this._user.next(user));
   }
 
   logout(): void {

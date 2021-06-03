@@ -11,3 +11,15 @@ ion-input {
   margin: 0;
   padding: 0;
 }
+
+.error-message
+  {
+    color: red;
+    font-size: 14px;
+    margin-left: 10px;
+    margin-top: 10px;
+  }
+
+  .submit-btn {
+    margin: 48px 12px 12px;
+  }

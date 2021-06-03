@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { IonNav, NavParams } from '@ionic/angular';
 import { User } from 'src/app/shared/models/user';
 import { AuthenticationService } from 'src/app/shared/services/authentication.service';
@@ -26,7 +27,7 @@ export class MontantPage implements OnInit {
    this.receiver = this.navParams.get('receiver')
    this.name = this.navParams.get("name");
    this.transType = this.navParams.get("transType");
-   this.authService.getUser().subscribe((user) => this.user = user)
+   this.authService.userObs.subscribe((user) => this.user = user)
   }
 
   dismiss(){

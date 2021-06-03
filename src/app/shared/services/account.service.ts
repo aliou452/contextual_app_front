@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { Observable } from 'rxjs';
+import { Observable, ReplaySubject, Subject } from 'rxjs';
 import { map } from "rxjs/operators";
 import { Transaction } from '../models/transaction.model';
 import { Client } from '../models/client.model';
@@ -15,21 +15,24 @@ import { Platform } from '@ionic/angular';
 })
 export class AccountService {
 
+  private _transactions = new ReplaySubject<Transaction[]>(1);
+  public transactionsObs = this._transactions.asObservable();
+
   constructor(
     private httpClient: HttpClient,
     private pinDialog: PinDialog,
     private platform: Platform
     ) { }
 
-  getTransactions(): Observable<Transaction[]> {
-    return this.httpClient.get<any[]>(`${environment.serverURL}/api/v1/transactions`)
+  getTransactions(){
+    this.httpClient.get<any[]>(`${environment.serverURL}/api/v1/transactions`)
     .pipe(
       map((data: any[]) => {
         let trans = [];
         data.forEach((d) => trans.push(new Transaction(d)));
         return trans;
       })
-    )
+    ).subscribe( trans => this._transactions.next(trans), error => console.log(error));
   }
 
   depot(receiver: string, amount: number, password: string) {
@@ -66,7 +69,7 @@ export class AccountService {
 
   pinDialogFunc() {
     return this.platform.ready().then(() =>
-      this.pinDialog.prompt('', 'Entrez votre code', ['OK', 'Annuler'])
+      this.pinDialog.prompt(' ', 'Entrez votre code secret: ', ['OK', 'Annuler'])
     )
   }
 }

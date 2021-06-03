@@ -9,45 +9,44 @@
   </ion-buttons>
 </ion-toolbar>
 
-<ion-content>
+<ion-content scroll-y="false">
 
-  <ion-card color="primary" mode="ios">
-    <ion-grid class="ion-no-padding">
-      <ion-row class="ion-no-padding">
-        <ion-col class="ion-no-margin">
-          <ion-card-header mode="ios">
-            <ion-card-title mode="ios">Solde UV</ion-card-title>
-          </ion-card-header>
-          <ion-card-content mode="ios">
-            <ion-label>
-              <h1>
-                <strong>
-                  {{user.pocket}} FCFA
-                </strong>
-              </h1>
-            </ion-label>
-          </ion-card-content>
-        </ion-col>
+  <ion-slides pager="true" [options]="slideOpts">
+    <ion-slide>
+      <ion-card color="primary" mode="ios">
+        <ion-card-header mode="ios">
+          <ion-card-title mode="ios">Solde UV</ion-card-title>
+        </ion-card-header>
+        <ion-card-content mode="ios">
+          <ion-label>
+            <h1>
+              <strong>
+                {{user.pocket}} FCFA
+              </strong>
+            </h1>
+          </ion-label>
+        </ion-card-content>
+      </ion-card>
+    </ion-slide>
 
-        <ion-col class="ion-no-margin">
-              <ion-card-header mode="ios">
-                <ion-card-title mode="ios">Seddo</ion-card-title>
-              </ion-card-header>
-              <ion-card-content mode="ios">
-                <ion-label>
-                  <h1>
-                    <strong>
-                      {{user.seddo}} FCFA
-                    </strong>
-                  </h1>
-                </ion-label>
-              </ion-card-content>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
+    <ion-slide>
+      <ion-card color="primary" mode="ios">
+        <ion-card-header mode="ios">
+          <ion-card-title mode="ios">Seddo</ion-card-title>
+        </ion-card-header>
+        <ion-card-content mode="ios">
+          <ion-label>
+            <h1>
+              <strong>
+                {{user.seddo}} FCFA
+              </strong>
+            </h1>
+          </ion-label>
+        </ion-card-content>
+      </ion-card>
+    </ion-slide>
+  </ion-slides>
 
-
-  </ion-card>
 
   <ion-list class="my-list">
     <ion-item button detail (click)="presentModal('UV')">

@@ -26,7 +26,7 @@ export class LoaderService {
     if (!this.isShowingLoader) {
       this.isShowingLoader = true
       this.loader = await this.loadingController.create({
-        message: 'Please wait',
+        message: 'En cours...',
         duration: time,
         mode: 'ios',
         translucent: true

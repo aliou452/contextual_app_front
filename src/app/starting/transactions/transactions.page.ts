@@ -29,16 +29,16 @@ export class TransactionsPage implements OnInit {
     ) { }
 
   async ngOnInit() {
-    await this.accountService.getTransactions().subscribe(
-      res =>
-      this.list = res
+    await this.accountService.getTransactions();
+    this.accountService.transactionsObs.subscribe(
+      res => this.list = res
     );
   }
 
   async doRefresh(event) {
     console.log('Begin async operation');
 
-    await this.accountService.getTransactions().subscribe(
+    await this.accountService.transactionsObs.subscribe(
       res =>
       this.list = res
     );

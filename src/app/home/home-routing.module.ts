@@ -12,22 +12,6 @@ const routes: Routes = [
     path: 'login',
     loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
   },
-  {
-    path: 'dashboard',
-    loadChildren: () => import('./dashboard/dashboard.module').then( m => m.DashboardPageModule)
-  },
-  {
-    path: 'commmande',
-    loadChildren: () => import('./commmande/commmande.module').then( m => m.CommmandePageModule)
-  },
-  {
-    path: 'reclamation',
-    loadChildren: () => import('./reclamation/reclamation.module').then( m => m.ReclamationPageModule)
-  },
-  {
-    path: 'commandes',
-    loadChildren: () => import('./commandes/commandes.module').then( m => m.CommandesPageModule)
-  }
 
 ];
 

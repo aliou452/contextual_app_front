@@ -53,16 +53,6 @@ export class AccountPage implements OnInit {
         orderType: typ,
       },
     });
-
     await modal.present();
-
-    // await modal.onWillDismiss().then( _ => {
-    //   this.authService.getUser().subscribe(
-    //     user => {
-    //       this.user = user;
-    //       console.log("Response:", user.firstName);
-    //     }
-    //   );
-    // })
   }
 }

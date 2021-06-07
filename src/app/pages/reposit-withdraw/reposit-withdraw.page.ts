@@ -1,11 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { IonNav, IonRouterOutlet, ModalController, NavParams } from '@ionic/angular';
-import { ModalBaseComponent } from 'src/app/components/modal-base/modal-base.component';
+import { IonNav, ModalController, NavParams } from '@ionic/angular';
 import { Client } from 'src/app/shared/models/client.model';
 import { AccountService } from 'src/app/shared/services/account.service';
-import { EnvoiPage } from 'src/app/starting/envoi/envoi.page';
-import { ConfirmationPage } from '../confirmation/confirmation.page';
 import { MontantPage } from '../depot-retrait/montant/montant.page';
+
+import { Plugins } from "@capacitor/core";
+const  { Contacts } = Plugins;
+import { Contact } from "@capacitor-community/contacts"
+import { isPlatform } from '@ionic/angular';
+import { CustomContact } from 'src/app/shared/models/custom-contact.model';
 
 @Component({
   selector: 'app-reposit-withdraw',
@@ -19,21 +22,62 @@ export class RepositWithdrawPage implements OnInit {
   nextPage: any = MontantPage;
   chooseUserPage: any
   listCl: Client[];
+  firstList: Client[];
   name: string = "";
-
+  contacts: Contact[] = [];
 
   constructor(
     private modalController: ModalController,
     private navParams: NavParams,
     private nav: IonNav,
-    private accountService: AccountService) { }
+    private accountService: AccountService,
+    ) {
+
+    }
 
   ngOnInit() {
     this.transType = this.navParams.get('data');
-    this.accountService.getClDist().subscribe( data => this.listCl = data);
+    this.accountService.getClDist().subscribe( data => {
+      this.firstList = data;
+      this.listCl = data;
+    });
+
+    this.loadContacts();
+
   }
 
-  dismiss(){
+  async loadContacts() {
+    if (isPlatform('android')) {
+      let permission = await Contacts.getPermissions();
+      console.log("Permission: ", permission.granted)
+      if (!permission.granted) {
+        return;
+      }
+    }
+    console.log("Passed")
+    Contacts.getContacts().then((result) => {
+      this.contacts = result.contacts.filter((contact: Contact) => contact.phoneNumbers.length!=0);
+      this.contacts.sort((c1, c2) => c1.displayName > c2.displayName? 1: -1);
+    });
+  }
+
+  async filterList(evt) {
+    // console.log("Contact 0", this.contacts[0].phoneNumbers[0].number)
+    this.listCl = this.firstList
+    const searchTerm = evt.srcElement.value;
+
+    if (!searchTerm) {
+      return;
+    }
+
+    this.listCl = this.listCl.filter(currentFood => {
+      if (currentFood.number && searchTerm) {
+        return (currentFood.number.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1);
+      }
+    });
+  }
+
+  dismiss() {
     this.modalController.dismiss()
   }
 
@@ -48,6 +92,12 @@ export class RepositWithdrawPage implements OnInit {
   takeClient(el: Client) {
     this.receiver = el.number;
     this.name = el.firstName + " " + el.lastName;
+    this.goForward()
+  }
+
+  takeContact(el: CustomContact) {
+    this.receiver = el.phoneNumber;
+    this.name = el.displayName;
     this.goForward()
   }
 

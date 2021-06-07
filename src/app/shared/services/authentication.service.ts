@@ -4,10 +4,11 @@ import { NavController } from '@ionic/angular';
 import { Observable, ReplaySubject } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { HTTP } from "@ionic-native/http/ngx";
-import { HttpClient } from '@angular/common/http';
-import { map } from 'rxjs/operators';
+import { HttpClient, HttpResponse } from '@angular/common/http';
+import { map, tap } from 'rxjs/operators';
 import { User } from '../models/user';
 import { from } from 'rxjs';
+import { AuthResponse } from '../models/auth-response';
 
 @Injectable({
   providedIn: 'root'
@@ -93,14 +94,4 @@ export class AuthenticationService {
     this.navCtrl.navigateRoot("/starting/account")
     return jwt;
   }
-
-  // signup(values: { firstName: string, lastName: string, number: string, code: string }): Observable<string> {
-  //   return this.http.post(`${environment.serverURL}/registration`, values, {responseType: 'text'})
-  //     .pipe(tap(jwt => {
-  //       if (jwt !== 'EXISTS') {
-  //         return this.handleJwtResponse(jwt);
-  //       }
-  //       return jwt;
-  //     }));
-  //   }
 }

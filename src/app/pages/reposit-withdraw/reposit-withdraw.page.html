@@ -1,5 +1,5 @@
-<ion-header>
-  <ion-toolbar>
+<ion-header mode="ios">
+  <ion-toolbar mode="ios">
     <ion-buttons slot="start">
       <ion-button color="primary" (click)="dismiss()">
         <ion-icon size="large" name="arrow-back-outline"></ion-icon>
@@ -7,20 +7,36 @@
     </ion-buttons>
     <ion-title>{{"Faire un " + (transType=="depot"?"dépôt":"retrait")}}</ion-title>
   </ion-toolbar>
+  <ion-toolbar mode="ios">
+    <ion-item lines="none" class="vert">
+      <ion-label class="hori">À</ion-label>
+    </ion-item>
+    <ion-searchbar (ionInput)="filterList($event)" class="hori" mode="ios"></ion-searchbar>
+  </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-item class="elevation ion-padding ion-margin" lines="none">
-    <ion-icon slot="start" name="phone-portrait-outline" class="phone-icon"></ion-icon>
-    <ion-label position="fixed">+221</ion-label>
-    <ion-input [(ngModel)]="receiver" inputmode="tel" placeholder="Bénéficiaire"></ion-input>
-  </ion-item>
+  <ion-list lines="none">
+    <ion-item-group>
+      <ion-item-divider mode="ios">
+        <ion-label>Favoris</ion-label>
+      </ion-item-divider>
 
-  <ion-list *ngFor="let el of listCl">
-    <ion-item button (click)="takeClient(el)">
-      <ion-label>{{el.firstName + " " + el.lastName}}</ion-label>
-      <ion-note slot="end">{{el.number}}</ion-note>
-    </ion-item>
+      <ion-item *ngFor="let el of listCl" button (click)="takeClient(el)">
+        <ion-label>{{el.firstName + " " + el.lastName}}</ion-label>
+        <ion-note slot="end">{{el.number}}</ion-note>
+      </ion-item>
+
+      <ion-item-divider mode="ios">
+        <ion-label>Contacts</ion-label>
+      </ion-item-divider>
+
+      <ion-item *ngFor="let el of contacts" button (click)="takeContact({phoneNumber: el.phoneNumbers[0].number, displayName: el.displayName})">
+        <ion-label>{{el.displayName}}</ion-label>
+        <ion-note slot="end">{{el.phoneNumbers[0].number}}</ion-note>
+      </ion-item>
+
+    </ion-item-group>
   </ion-list>
 </ion-content>
 

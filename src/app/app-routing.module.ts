@@ -5,7 +5,8 @@ const routes: Routes = [
 
   {
     path: '',
-    loadChildren: () => import('./welcome/welcome.module').then( m => m.WelcomePageModule)
+    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
+  //   loadChildren: () => import('./welcome/welcome.module').then( m => m.WelcomePageModule)
   },
   {
     path: 'home',
@@ -18,7 +19,8 @@ const routes: Routes = [
   {
     path: 'commande',
     loadChildren: () => import('./pages/commande/commande.module').then( m => m.CommandePageModule)
-  },  {
+  },
+  {
     path: 'reposit-withdraw',
     loadChildren: () => import('./pages/reposit-withdraw/reposit-withdraw.module').then( m => m.RepositWithdrawPageModule)
   },

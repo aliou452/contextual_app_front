@@ -6,7 +6,11 @@ import { map } from "rxjs/operators";
 import { Transaction } from '../models/transaction.model';
 import { Client } from '../models/client.model';
 import { PinDialog } from '@ionic-native/pin-dialog/ngx';
-import { Platform } from '@ionic/angular';
+import { isPlatform, Platform } from '@ionic/angular';
+import { Plugins } from "@capacitor/core";
+const  { Contacts } = Plugins;
+import { Contact } from "@capacitor-community/contacts"
+import { CustomContact } from '../models/custom-contact.model';
 
 
 
@@ -17,6 +21,8 @@ export class AccountService {
 
   private _transactions = new ReplaySubject<Transaction[]>(1);
   public transactionsObs = this._transactions.asObservable();
+  private _contacts = new ReplaySubject<CustomContact[]>(1);
+  public contactObs = this._contacts.asObservable();
 
   constructor(
     private httpClient: HttpClient,
@@ -71,5 +77,41 @@ export class AccountService {
     return this.platform.ready().then(() =>
       this.pinDialog.prompt(' ', 'Entrez votre code secret: ', ['OK', 'Annuler'])
     )
+  }
+
+  async loadContacts() {
+    if (isPlatform('android')) {
+      let permission = await Contacts.getPermissions();
+      // console.log("Permission: ", permission.granted)
+      if (!permission.granted) {
+        return;
+      }
+    }
+    // console.log("Passed");
+    const re = /\s+/g;
+    Contacts.getContacts().then((result) => {
+      // console.log("Results: ", result.contacts[0].displayName)
+      const contacts: CustomContact[] = result.contacts.filter((contact: Contact) => contact.phoneNumbers.length!=0 && contact.displayName)
+                                  .map((contact :Contact) => {
+                                    return  new CustomContact({displayName: contact.displayName, phoneNumber: contact.phoneNumbers[0].number});;
+                                  });
+      let cont = result.contacts.filter((contact: Contact) => contact.phoneNumbers.length>0 && contact.displayName);
+      cont = cont.map((contact :Contact) => {
+                      return new CustomContact({displayName: contact.displayName, phoneNumber: contact.phoneNumbers[0].number});
+                    });
+      // const doubleContact = contacts.filter(contact => contact.phoneNumbers.length==2)
+      //                                     .map(contact => {
+      //                                       // return new CustomContact({displayName: contact.displayName, phoneNumber: contact.phoneNumbers[1].number});
+      //                                       contact.phoneNumbers = [{number: contact.phoneNumbers[0].number.replace(re,"")}];
+      //                                       return contact
+      //                                       });
+      // const cont = contacts.map(contact => {
+        // return new CustomContact({displayName: contact.displayName, phoneNumber: contact.phoneNumbers[0].number});
+      // });
+      // cont.push(...doubleContact);
+      // console.log("Contact: ", cont[0].displayName);
+      contacts.sort((c1, c2) => c1.displayName > c2.displayName? 1: -1);
+      this._contacts.next(contacts);
+    });
   }
 }

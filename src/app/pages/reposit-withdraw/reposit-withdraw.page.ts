@@ -9,6 +9,7 @@ const  { Contacts } = Plugins;
 import { Contact } from "@capacitor-community/contacts"
 import { isPlatform } from '@ionic/angular';
 import { CustomContact } from 'src/app/shared/models/custom-contact.model';
+import { Observable, of } from 'rxjs';
 
 @Component({
   selector: 'app-reposit-withdraw',
@@ -24,7 +25,9 @@ export class RepositWithdrawPage implements OnInit {
   listCl: Client[];
   firstList: Client[];
   name: string = "";
-  contacts: Contact[] = [];
+  contacts: CustomContact[] = [];
+  firstContacts: CustomContact[] = [];
+  load: boolean = true;
 
   constructor(
     private modalController: ModalController,
@@ -36,43 +39,55 @@ export class RepositWithdrawPage implements OnInit {
     }
 
   ngOnInit() {
+    console.log("First length: ", this.contacts.length)
+    // this.transType = this.navParams.get('data');
+    // this.accountService.getClDist().subscribe( data => {
+    //   this.firstList = data;
+    //   this.listCl = data;
+    // });
+
+    // this.accountService.contactObs.subscribe(contacts => {
+    //   this.firstContacts = contacts
+    //   this.contacts = contacts
+    // });
+
+  }
+
+  ionViewDidEnter() {
     this.transType = this.navParams.get('data');
     this.accountService.getClDist().subscribe( data => {
       this.firstList = data;
       this.listCl = data;
     });
-
-    this.loadContacts();
-
-  }
-
-  async loadContacts() {
-    if (isPlatform('android')) {
-      let permission = await Contacts.getPermissions();
-      console.log("Permission: ", permission.granted)
-      if (!permission.granted) {
-        return;
-      }
-    }
-    console.log("Passed")
-    Contacts.getContacts().then((result) => {
-      this.contacts = result.contacts.filter((contact: Contact) => contact.phoneNumbers.length!=0);
-      this.contacts.sort((c1, c2) => c1.displayName > c2.displayName? 1: -1);
+    this.accountService.loadContacts()
+    this.accountService.contactObs.subscribe(contacts => {
+      this.firstContacts = contacts
+      this.contacts = contacts
+      console.log("Load: ", this.contacts.length)
     });
   }
 
-  async filterList(evt) {
-    // console.log("Contact 0", this.contacts[0].phoneNumbers[0].number)
+  filterList(evt) {
     this.listCl = this.firstList
+    this.contacts = this.firstContacts
     const searchTerm = evt.srcElement.value;
 
     if (!searchTerm) {
       return;
     }
 
-    this.listCl = this.listCl.filter(currentFood => {
-      if (currentFood.number && searchTerm) {
-        return (currentFood.number.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1);
+    this.listCl = this.listCl.filter(currentContact => {
+      if (currentContact.number && searchTerm) {
+        const fullName = currentContact.firstName + " " + currentContact.lastName;
+        return (currentContact.number.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1) ||
+        (fullName.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1);
+      }
+    });
+
+    this.contacts = this.contacts.filter(currentContact => {
+      if (currentContact.phoneNumber && searchTerm) {
+        return (currentContact.phoneNumber.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1) ||
+        (currentContact.displayName.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1);
       }
     });
   }

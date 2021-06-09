@@ -11,37 +11,56 @@
     <ion-item lines="none" class="vert">
       <ion-label class="hori">À</ion-label>
     </ion-item>
-    <ion-searchbar (ionInput)="filterList($event)" class="hori" mode="ios"></ion-searchbar>
+    <ion-searchbar placeholder="Chercher" (ionInput)="filterList($event)" class="hori" mode="ios"></ion-searchbar>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-list lines="none">
+  <ion-list lines="none" mode="ios" inset>
     <ion-item-group>
       <ion-item-divider mode="ios">
         <ion-label>Favoris</ion-label>
       </ion-item-divider>
 
-      <ion-item *ngFor="let el of listCl" button (click)="takeClient(el)">
+      <ion-item *ngIf="!firstList.length">
+        <ion-label>
+          <ion-skeleton-text animated style="width: 88%"></ion-skeleton-text>
+        </ion-label>
+        <ion-note>
+          <ion-skeleton-text animated style="width: 88%"></ion-skeleton-text>
+        </ion-note>
+      </ion-item>
+
+      <div *ngIf="listCl.length">
+        <ion-item *ngFor="let el of listCl" button (click)="takeClient(el)" mode="ios" detail="false">
         <ion-label>{{el.firstName + " " + el.lastName}}</ion-label>
         <ion-note slot="end">{{el.number}}</ion-note>
       </ion-item>
+      </div>
+
 
       <ion-item-divider mode="ios">
         <ion-label>Contacts</ion-label>
       </ion-item-divider>
 
-      <ion-item *ngFor="let el of contacts" button (click)="takeContact({phoneNumber: el.phoneNumbers[0].number, displayName: el.displayName})">
-        <ion-label>{{el.displayName}}</ion-label>
-        <ion-note slot="end">{{el.phoneNumbers[0].number}}</ion-note>
+      <ion-item *ngIf="!contacts.length">
+        <ion-label>
+          <ion-skeleton-text animated style="width: 88%"></ion-skeleton-text>
+        </ion-label>
+        <ion-note>
+          <ion-skeleton-text animated style="width: 88%"></ion-skeleton-text>
+        </ion-note>
       </ion-item>
+
+      <div *ngIf="contacts.length">
+        <ion-item *ngFor="let el of contacts" button
+          (click)="takeContact({phoneNumber: el.phoneNumber, displayName: el.displayName})" detail="false">
+          <ion-label>{{el.displayName}}</ion-label>
+          <ion-note slot="end">{{el.phoneNumber}}</ion-note>
+        </ion-item>
+      </div>
+
 
     </ion-item-group>
   </ion-list>
 </ion-content>
-
-<ion-footer>
-  <ion-button expand="full" (click)="next()">
-    Suivant
-  </ion-button>
-</ion-footer>

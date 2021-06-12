@@ -5,7 +5,7 @@
         <ion-icon size="large" name="arrow-back-outline"></ion-icon>
       </ion-button>
     </ion-buttons>
-    <ion-title>{{"Faire un " + (transType=="depot"?"dépôt":"retrait")}}</ion-title>
+    <ion-title>{{"Faire un " + (transType=="depot"?"dépôt":(transType=="retrait"?"retrait":"seddo"))}}</ion-title>
   </ion-toolbar>
   <ion-toolbar mode="ios">
     <ion-item lines="none" class="vert">

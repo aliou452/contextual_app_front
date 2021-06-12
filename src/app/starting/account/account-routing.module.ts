@@ -8,11 +8,6 @@ const routes: Routes = [
     path: '',
     component: AccountPage
   },
-  {
-    path: 'trans-modal',
-    loadChildren: () => import('../trans-modal/trans-modal.module').then( m => m.TransModalPageModule)
-  }
-
 ];
 
 @NgModule({

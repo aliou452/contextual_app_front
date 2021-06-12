@@ -71,7 +71,7 @@ export class TransactionsPage implements OnInit {
 
   transType(transaction: Transaction): string{
     if(transaction.transactionType=="MONEY_WITHDRAW"){
-      return "Retrait OM effectué";
+      return "Commission retrait effectué";
     }
     if(transaction.amount>0){
       if(transaction.transactionType=="MONEY"){

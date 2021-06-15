@@ -22,7 +22,7 @@
         <ion-label>Favoris</ion-label>
       </ion-item-divider>
 
-      <ion-item *ngIf="!firstList.length">
+      <ion-item *ngIf="loading[0]">
         <ion-label>
           <ion-skeleton-text animated style="width: 88%"></ion-skeleton-text>
         </ion-label>
@@ -31,8 +31,14 @@
         </ion-note>
       </ion-item>
 
-      <div *ngIf="listCl.length">
-        <ion-item *ngFor="let el of listCl" button (click)="takeClient(el)" mode="ios" detail="false">
+      <div *ngIf="!loading[0]">
+        <ion-item
+          *ngFor="let el of listCl"
+          button (click)="takeClient(el)"
+          mode="ios"
+          detail="false"
+          class="padding"
+          >
         <ion-label>{{el.firstName + " " + el.lastName}}</ion-label>
         <ion-note slot="end">{{el.number}}</ion-note>
       </ion-item>
@@ -43,7 +49,7 @@
         <ion-label>Contacts</ion-label>
       </ion-item-divider>
 
-      <ion-item *ngIf="!contacts.length">
+      <ion-item *ngIf="loading[1]">
         <ion-label>
           <ion-skeleton-text animated style="width: 88%"></ion-skeleton-text>
         </ion-label>
@@ -52,15 +58,17 @@
         </ion-note>
       </ion-item>
 
-      <div *ngIf="contacts.length">
-        <ion-item *ngFor="let el of contacts" button
-          (click)="takeContact({phoneNumber: el.phoneNumber, displayName: el.displayName})" detail="false">
+      <div *ngIf="!loading[1]">
+        <ion-item
+          *ngFor="let el of contacts"
+          button
+          (click)="takeContact(el)"
+          detail="false"
+          class="padding"
+          >
           <ion-label>{{el.displayName}}</ion-label>
-          <ion-note slot="end">{{el.phoneNumber}}</ion-note>
         </ion-item>
       </div>
-
-
     </ion-item-group>
   </ion-list>
 </ion-content>

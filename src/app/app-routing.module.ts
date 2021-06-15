@@ -31,7 +31,11 @@ const routes: Routes = [
   {
     path: 'montant',
     loadChildren: () => import('./pages/depot-retrait/montant/montant.module').then( m => m.MontantPageModule)
+  },  {
+    path: 'facture',
+    loadChildren: () => import('./pages/facture/facture.module').then( m => m.FacturePageModule)
   },
+
 
 
   // {

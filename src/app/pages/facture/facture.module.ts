@@ -4,9 +4,10 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { CommandePageRoutingModule } from './commande-routing.module';
+import { FacturePageRoutingModule } from './facture-routing.module';
 
-import { CommandePage } from './commande.page';
+import { FacturePage } from './facture.page';
+import { ToolbarComponent } from 'src/app/components/toolbar/toolbar.component';
 import { SharedComponentsModule } from 'src/app/components/shared-components.module';
 
 @NgModule({
@@ -14,9 +15,9 @@ import { SharedComponentsModule } from 'src/app/components/shared-components.mod
     CommonModule,
     FormsModule,
     IonicModule,
-    CommandePageRoutingModule,
+    FacturePageRoutingModule,
     SharedComponentsModule
   ],
-  declarations: [CommandePage]
+  declarations: [FacturePage]
 })
-export class CommandePageModule {}
+export class FacturePageModule {}

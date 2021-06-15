@@ -1,13 +1,8 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-button color="primary" (click)="dismiss()">
-        <ion-icon size="large" name="arrow-back-outline"></ion-icon>
-      </ion-button>
-    </ion-buttons>
-    <ion-title>{{"Envoyer à " + (name==""?receiver:name)}}</ion-title>
-  </ion-toolbar>
-</ion-header>
+
+<app-toolbar
+  [title]="'Envoyer à ' + (name==''?receiver:name)"
+  (dismiss)="dismiss()">
+</app-toolbar>
 
 <ion-content>
   <ion-item class="amount">

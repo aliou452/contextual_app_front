@@ -3,13 +3,7 @@ import { IonNav, ModalController, NavParams } from '@ionic/angular';
 import { Client } from 'src/app/shared/models/client.model';
 import { AccountService } from 'src/app/shared/services/account.service';
 import { MontantPage } from '../depot-retrait/montant/montant.page';
-
-import { Plugins } from "@capacitor/core";
-const  { Contacts } = Plugins;
-import { Contact } from "@capacitor-community/contacts"
-import { isPlatform } from '@ionic/angular';
 import { CustomContact } from 'src/app/shared/models/custom-contact.model';
-import { Observable, of } from 'rxjs';
 
 @Component({
   selector: 'app-reposit-withdraw',
@@ -27,7 +21,7 @@ export class RepositWithdrawPage implements OnInit {
   name: string = "";
   contacts: CustomContact[] = [];
   firstContacts: CustomContact[] = [];
-  load: boolean = true;
+  loading: boolean[] = [true, true];
 
   constructor(
     private modalController: ModalController,
@@ -39,18 +33,11 @@ export class RepositWithdrawPage implements OnInit {
     }
 
   ngOnInit() {
+    this.loading = [true, true];
+    setTimeout(() => {
+      this.loading = [false, false]
+    }, 200)
     console.log("First length: ", this.contacts.length)
-    // this.transType = this.navParams.get('data');
-    // this.accountService.getClDist().subscribe( data => {
-    //   this.firstList = data;
-    //   this.listCl = data;
-    // });
-
-    // this.accountService.contactObs.subscribe(contacts => {
-    //   this.firstContacts = contacts
-    //   this.contacts = contacts
-    // });
-
   }
 
   ionViewDidEnter() {
@@ -70,7 +57,7 @@ export class RepositWithdrawPage implements OnInit {
   filterList(evt) {
     this.listCl = this.firstList
     this.contacts = this.firstContacts
-    const searchTerm = evt.srcElement.value;
+    const searchTerm: String = evt.srcElement.value;
 
     if (!searchTerm) {
       return;
@@ -85,8 +72,9 @@ export class RepositWithdrawPage implements OnInit {
     });
 
     this.contacts = this.contacts.filter(currentContact => {
-      if (currentContact.phoneNumber && searchTerm) {
-        return (currentContact.phoneNumber.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1) ||
+      if (currentContact.phoneNumbers && searchTerm) {
+        const phoneNumbers = currentContact.phoneNumbers.filter(phone => phone.number.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1);
+        return phoneNumbers.length ||
         (currentContact.displayName.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1);
       }
     });
@@ -100,10 +88,6 @@ export class RepositWithdrawPage implements OnInit {
     this.nav.push(this.nextPage, {receiver: this.receiver, transType: this.transType, name: this.name});
   }
 
-  chooseUser() {
-    this.nav.push(this.chooseUserPage);
-  }
-
   takeClient(el: Client) {
     this.receiver = el.number;
     this.name = el.firstName + " " + el.lastName;
@@ -111,18 +95,8 @@ export class RepositWithdrawPage implements OnInit {
   }
 
   takeContact(el: CustomContact) {
-    this.receiver = el.phoneNumber;
+    this.receiver = el.phoneNumbers[0].number;
     this.name = el.displayName;
-    this.goForward()
-  }
-
-  next(){
-    if(this.receiver.length == 9) {
-      this.accountService.getClient(this.receiver).subscribe(client =>
-        {
-          this.receiver = client.number;
-        });
-    }
     this.goForward()
   }
 }

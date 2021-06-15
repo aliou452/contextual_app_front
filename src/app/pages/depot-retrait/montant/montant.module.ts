@@ -8,6 +8,7 @@ import { MontantPageRoutingModule } from './montant-routing.module';
 
 import { MontantPage } from './montant.page';
 import { ConfirmationPageModule } from '../../confirmation/confirmation.module';
+import { SharedComponentsModule } from 'src/app/components/shared-components.module';
 
 @NgModule({
   imports: [
@@ -16,7 +17,7 @@ import { ConfirmationPageModule } from '../../confirmation/confirmation.module';
     IonicModule,
     MontantPageRoutingModule,
     ConfirmationPageModule,
-    ReactiveFormsModule
+    SharedComponentsModule
   ],
   declarations: [MontantPage]
 })

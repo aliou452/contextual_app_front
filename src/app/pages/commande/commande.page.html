@@ -1,4 +1,4 @@
-<ion-header>
+<!-- <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-button (click)="dismiss()">
@@ -7,7 +7,12 @@
     </ion-buttons>
     <ion-title>{{"Commander " + orderType}}</ion-title>
   </ion-toolbar>
-</ion-header>
+</ion-header> -->
+
+<app-toolbar
+  [title]="'Commander ' + orderType"
+  (dismiss)="dismiss()">
+</app-toolbar>
 
 <ion-content>
 

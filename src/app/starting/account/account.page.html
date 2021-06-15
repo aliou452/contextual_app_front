@@ -48,13 +48,8 @@
   </ion-slides>
 
 
-  <ion-list class="my-list" mode="ios">
-    <ion-item
-      *ngFor="let function of functions"
-      button detail
-      (click)="presentModal(function.present)"
-      mode="ios"
-    >
+  <ion-list class="my-list" mode="ios" lines="none">
+    <ion-item *ngFor="let function of functions" button detail (click)="presentModal(function.present)" mode="ios" detail="false">
       <ion-label mode='ios'>
         {{function.label}}
       </ion-label>

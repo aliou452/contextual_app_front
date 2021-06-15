@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { IonNav } from '@ionic/angular';
+import { IonNav, ModalController } from '@ionic/angular';
+import { PayerFacturePage } from '../payer-facture/payer-facture.page';
 
 @Component({
   selector: 'app-facture',
@@ -10,14 +11,22 @@ export class FacturePage implements OnInit {
 
   title: string = "Paiement facture"
   image = "assets/images/senelec.png"
+  image2 = "assets/images/SenEau.jpg"
+  image3 = "assets/images/rapido.png"
 
-  constructor(private nav: IonNav,) { }
+  constructor(
+    private nav: IonNav,
+    private modalCtrl: ModalController) { }
 
   ngOnInit() {
   }
 
   dismiss() {
-    this.nav.popToRoot();
+    this.modalCtrl.dismiss();
+  }
+
+  present(typ: string) {
+    this.nav.push(PayerFacturePage, { type: typ});
   }
 
 }

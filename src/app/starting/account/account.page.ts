@@ -60,7 +60,8 @@ export class AccountPage implements OnInit {
       presentingElement: this.routerOutlet.nativeEl,
       component: ModalBaseComponent,
       componentProps: {
-        rootPage: (typ=="UV" || typ=="seddo")?CommandePage:(typ=="facture")?FacturePage:RepositWithdrawPage,
+        rootPage: (typ=="UV" || typ=="seddo")?
+                  CommandePage:(typ=="facture")?FacturePage:RepositWithdrawPage,
         orderType: typ,
       },
     });

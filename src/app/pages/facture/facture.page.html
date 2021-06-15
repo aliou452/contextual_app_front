@@ -4,15 +4,16 @@
 <ion-content>
   <ion-row>
     <ion-col>
-      <app-card [image]="image" title="Senelec"></app-card>
+      <app-card [image]="image3" title="Senelec" (click)="present('Senelec')"></app-card>
     </ion-col>
     <ion-col>
-      <app-card [image]="image" title="Senelec"></app-card>
+      <app-card [image]="image2" title="Sen'Eau" (click)="present('Sen\'Eau')"></app-card>
     </ion-col>
   </ion-row>
   <ion-row>
     <ion-col size=6 offset=3>
-      <app-card [image]="image" title="Senelec"></app-card>
+      <app-card [image]="image" title="Rapido" (click)="present('Rapido')"></app-card>
+
     </ion-col>
   </ion-row>
 

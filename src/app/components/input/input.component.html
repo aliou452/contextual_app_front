@@ -1,0 +1,4 @@
+<ion-item mode="ios">
+  <ion-label [style.min-width.%]="size" [style.max-width.%]="size" position="fixed">{{input}}</ion-label>
+  <ion-input (keyup)="onKey($event)" inputmode="numeric" [maxlength]="maxLength" [placeholder]="placeholder"></ion-input>
+</ion-item>

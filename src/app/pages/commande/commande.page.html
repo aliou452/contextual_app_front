@@ -4,14 +4,7 @@
 </app-toolbar>
 
 <ion-content>
-
-  <ion-item class="amount">
-    <ion-label>
-      Montant:
-    </ion-label>
-    <ion-input inputmode="tel" required [(ngModel)]="amount"></ion-input>
-  </ion-item>
-
+  <app-input input="Montant: " [size]=32 [maxLength]=12 ></app-input>
 </ion-content>
 
 <ion-footer>

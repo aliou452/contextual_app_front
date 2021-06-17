@@ -1,0 +1,32 @@
+<app-toolbar [title]="'Payer facture ' + type" (dismiss)="dismiss()"></app-toolbar>
+
+
+<ion-content>
+
+  <ion-row>
+    <ion-col size=6.5>
+      <ion-item lines="none" mode="ios">
+        <ion-icon style="float: left;" name="home-sharp"></ion-icon>
+      </ion-item>
+    </ion-col>
+
+    <ion-col size=5.5>
+      <ion-item lines="none" mode="ios">
+        <ion-label>{{contract}}</ion-label>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+
+
+  <ion-item class="ion-padding-horizontale" lines="none">
+    <ion-label class="ion-padding-horizontale" color="primary">{{numbre + " facture(s) à payer"}} </ion-label>
+  </ion-item>
+  <ion-item  class="ion-padding-horizontale" lines="none" *ngIf="aPayer">
+    <ion-label class="ion-padding-horizontale">Sélectionnez la facture pour continuer</ion-label>
+  </ion-item>
+
+  <app-facture-detail (clickEvent)="onClick($event)" [amount]="1000000"></app-facture-detail>
+
+</ion-content>
+
+<app-footer [disabled]="disabled" text="Payer"></app-footer>

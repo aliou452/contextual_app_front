@@ -1,9 +1,7 @@
 <app-toolbar [title]="'Payer Facture ' + this.typeFacture" (dismiss)="dismiss()"></app-toolbar>
 
 <ion-content>
-  <ion-item mode="ios">
-    <ion-label position="fixed">N°</ion-label>
-    <ion-input inputmode="numeric" maxlength=12 placeholder="Entrez un compte de contrat"></ion-input>
-  </ion-item>
-
+  <app-input (contractEvent)="getContract($event)" input="N°" [maxLength]=12 placeholder="Entrez un compte de contrat"></app-input>
 </ion-content>
+
+<app-footer text="Suivant" (next)="next()"></app-footer>

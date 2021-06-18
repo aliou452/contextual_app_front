@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { IonNav, NavParams } from '@ionic/angular';
+import { FactureService } from 'src/app/shared/services/facture.service';
 import { FactureConfirmationPage } from '../facture-confirmation/facture-confirmation.page';
 import { FacturePage } from '../facture/facture.page';
 
@@ -13,8 +14,10 @@ export class PayerFacturePage implements OnInit {
   typeFacture: string;
   contract: string;
 
-  constructor(private navParams: NavParams,
-              private nav: IonNav
+  constructor(
+              private navParams: NavParams,
+              private nav: IonNav,
+              private factureService: FactureService,
     ) {}
 
   ngOnInit() {
@@ -28,7 +31,14 @@ export class PayerFacturePage implements OnInit {
   }
 
   next() {
-    this.nav.push(FactureConfirmationPage, {type: this.typeFacture, contract: this.contract});
+    this.factureService.getContract(this.contract).subscribe(
+      isPresent => {
+        if(isPresent){
+          this.nav.push(FactureConfirmationPage, {type: this.typeFacture, contract: this.contract})
+        }
+
+      }
+      );
   }
 
   getContract(event) {

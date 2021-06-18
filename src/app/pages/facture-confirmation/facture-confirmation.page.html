@@ -25,8 +25,8 @@
     <ion-label class="ion-padding-horizontale">Sélectionnez la facture pour continuer</ion-label>
   </ion-item>
 
-  <app-facture-detail (clickEvent)="onClick($event)" [amount]="1000000"></app-facture-detail>
+  <app-facture-detail *ngFor="let facture of factures" (clickEvent)="onClick($event)" [amount]="facture.amount" [date]="format(facture.paymentDay)"></app-facture-detail>
 
 </ion-content>
 
-<app-footer [disabled]="disabled" text="Payer"></app-footer>
+<app-footer [disabled]="disabled" text="Payer" (next)="payer()"></app-footer>

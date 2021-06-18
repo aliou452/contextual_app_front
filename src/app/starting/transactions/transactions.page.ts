@@ -77,6 +77,9 @@ export class TransactionsPage implements OnInit {
       if(transaction.transactionType=="MONEY"){
         return "Commande UV effectuée"
       } else{
+        if(transaction.transactionType="FACTURE"){
+          return "Facture payée avec succès"
+        }
         return "Commande Seddo effectuée"
       }
     }

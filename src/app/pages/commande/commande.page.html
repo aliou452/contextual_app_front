@@ -4,7 +4,7 @@
 </app-toolbar>
 
 <ion-content>
-  <app-input input="Montant: " [size]=32 [maxLength]=12 ></app-input>
+  <app-input (onClick)="onClick($event)" input="Montant: " [size]=32 [maxLength]=12 ></app-input>
 </ion-content>
 
 <ion-footer>

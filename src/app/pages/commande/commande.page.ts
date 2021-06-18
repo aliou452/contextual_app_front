@@ -29,6 +29,10 @@ export class CommandePage implements OnInit {
     this.modalController.dismiss();
   }
 
+  onClick(event) {
+    this.amount = event;
+  }
+
   order(){
     this.accountService.pinDialogFunc().then(
       (result: any) => {

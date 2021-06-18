@@ -11,7 +11,7 @@ export class InputComponent implements OnInit {
   @Input() placeholder: string;
   @Input() maxLength: number;
   @Input() size: number = 8;
-  @Output() contractEvent = new EventEmitter<string>();
+  @Output() onClick = new EventEmitter<string>();
   contract: string
 
   constructor() { }
@@ -20,7 +20,7 @@ export class InputComponent implements OnInit {
 
   onKey(event: KeyboardEvent) {
     let value: string = (event.target as HTMLInputElement).value;
-    this.contractEvent.emit(value)
+    this.onClick.emit(value)
   }
 
 }

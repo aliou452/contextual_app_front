@@ -8,7 +8,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 export class FactureDetailComponent implements OnInit {
 
   @Input() amount: number;
-  @Input() date: string = "07 juillet 2021";
+  @Input() date: string;
   @Input() is_clicked = false;
   @Output() clickEvent = new EventEmitter<boolean>();
   constructor() { }

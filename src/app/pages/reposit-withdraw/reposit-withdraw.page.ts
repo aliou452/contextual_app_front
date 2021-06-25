@@ -1,9 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { IonNav, ModalController, NavParams } from '@ionic/angular';
+import { IonNav, isPlatform, ModalController, NavParams } from '@ionic/angular';
 import { Client } from 'src/app/shared/models/client.model';
 import { AccountService } from 'src/app/shared/services/account.service';
 import { MontantPage } from '../depot-retrait/montant/montant.page';
 import { CustomContact } from 'src/app/shared/models/custom-contact.model';
+
+import { Plugins } from "@capacitor/core";
+const  { Contacts } = Plugins;
+import { Contact } from "@capacitor-community/contacts"
 
 @Component({
   selector: 'app-reposit-withdraw',
@@ -36,21 +40,37 @@ export class RepositWithdrawPage implements OnInit {
     this.loading = [true, true];
     setTimeout(() => {
       this.loading = [false, false]
-    }, 200)
+    }, 200);
     console.log("First length: ", this.contacts.length)
   }
 
-  ionViewDidEnter() {
+  async ionViewDidEnter() {
     this.transType = this.navParams.get('data');
     this.accountService.getClDist().subscribe( data => {
       this.firstList = data;
       this.listCl = data;
     });
-    this.accountService.loadContacts()
-    this.accountService.contactObs.subscribe(contacts => {
-      this.firstContacts = contacts
-      this.contacts = contacts
-      console.log("Load: ", this.contacts.length)
+
+    if (isPlatform('android')) {
+      let permission = await Contacts.getPermissions();
+       if (!permission.granted) {
+        return;
+      }
+    }
+
+    Contacts.getContacts().then(
+      (result: {contacts: Contact[]}) => {
+      const contacts = result.contacts.filter(contact =>
+                                            contact.phoneNumbers.length!=0 && contact.displayName
+                                      ).map(contact =>
+                                          new CustomContact(
+                                          {displayName: contact.displayName, phoneNumbers: contact.phoneNumbers}
+                                        )
+                                      );
+      contacts.sort((c1, c2) => c1.displayName > c2.displayName? 1: -1);
+      this.firstContacts = contacts;
+      this.contacts = contacts;
+      console.log("Load: ", this.contacts.length);
     });
   }
 

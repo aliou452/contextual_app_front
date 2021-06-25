@@ -23,13 +23,13 @@ export class AccountPage implements OnInit {
   };
 
   functions = [
-    {label: "Commande UV", present: "UV"},
-    {label: "Commande Seddo", present: "seddo"},
-    {label: "Dépot d'argent", present: "depot"},
-    {label: "Retrait d'argent", present: "retrait"},
-    {label: "Seddo", present: "depot-seddo"},
-    {label: "Paiement facture", present: "facture"},
-    {label: "Retrait avec code", present: "code"}
+    {label: "Commande UV", present: "UV", src: "assets/icon/UV.svg"},
+    {label: "Commande Seddo", present: "seddo", src: "assets/icon/seddo.svg"},
+    {label: "Dépot d'argent", present: "depot", src: "assets/icon/depot.svg"},
+    {label: "Retrait d'argent", present: "retrait", src: "assets/icon/retrait.svg"},
+    {label: "Seddo", present: "depot-seddo", src: "assets/icon/seddo.svg"},
+    {label: "Paiement facture", present: "facture", src: "assets/icon/bill.svg"},
+    {label: "Retrait avec code", present: "code", src: "assets/icon/retrait.svg"}
               ]
 
   constructor(

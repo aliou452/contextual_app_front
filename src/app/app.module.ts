@@ -17,6 +17,7 @@ import { NativeHttpInterceptor } from './interceptor/native-http.interceptor';
 import { registerLocaleData } from '@angular/common';
 import localeFr from '@angular/common/locales/fr';
 import { PinDialog } from '@ionic-native/pin-dialog/ngx';
+import { CoreModule } from './core/core.module';
 
 registerLocaleData(localeFr);
 
@@ -36,6 +37,7 @@ export function tokenGetter(): string | null {
     AngularFireAuthModule,
     AngularFirestoreModule,
     HttpClientModule,
+    // CoreModule,
 
 
     JwtModule.forRoot({

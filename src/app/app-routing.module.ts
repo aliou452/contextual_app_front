@@ -39,13 +39,13 @@ const routes: Routes = [
   {
     path: 'payer-facture',
     loadChildren: () => import('./pages/payer-facture/payer-facture.module').then( m => m.PayerFacturePageModule)
-  },  {
+  },
+  {
     path: 'facture-confirmation',
     loadChildren: () => import('./pages/facture-confirmation/facture-confirmation.module').then( m => m.FactureConfirmationPageModule)
   },
 
-
-
+  { path: 'features', loadChildren: () => import('./features/features.module').then(m => m.FeaturesModule) },
 
   // {
   //   path: '',

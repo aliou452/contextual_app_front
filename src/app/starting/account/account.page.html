@@ -9,7 +9,7 @@
   </ion-buttons>
 </ion-toolbar>
 
-<ion-content scroll-y="false">
+<ion-content >
 
   <ion-slides pager="true" [options]="slideOpts">
     <ion-slide>
@@ -47,9 +47,18 @@
     </ion-slide>
   </ion-slides>
 
+  <ion-grid>
+    <ion-row>
+      <ion-col></ion-col>
+      <ion-col></ion-col>
+      <ion-col></ion-col>
+    </ion-row>
+  </ion-grid>
 
-  <ion-list class="my-list" mode="ios" lines="none">
-    <ion-item *ngFor="let function of functions" button detail (click)="presentModal(function.present)" mode="ios" detail="false">
+
+  <ion-list class="my-list" mode="ios" lines="inset">
+    <ion-item *ngFor="let function of functions" button (click)="presentModal(function.present)" mode="ios">
+      <ion-icon size="large" slot="start" [src]="function.src" class="filter"></ion-icon>
       <ion-label mode='ios'>
         {{function.label}}
       </ion-label>

@@ -1,60 +1,79 @@
-<ion-toolbar mode="ios">
-  <ion-buttons slot="end">
-    <ion-button fill="clear" (click)="logout()">
-      <ion-icon slot="icon-only" name="search-outline"></ion-icon>
-    </ion-button>
-    <ion-button fill="clear">
-      <ion-icon slot="icon-only" name="notifications-outline"></ion-icon>
-    </ion-button>
-  </ion-buttons>
-</ion-toolbar>
+<ion-header >
+  <ion-toolbar mode="ios" class="horizontale">
+    <ion-buttons slot="end">
+      <ion-button fill="clear" (click)="logout()">
+        <ion-icon slot="icon-only" name="search-outline"></ion-icon>
+      </ion-button>
+      <ion-button fill="clear">
+        <ion-icon slot="icon-only" name="notifications-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
 
-<ion-content >
 
-  <ion-slides pager="true" [options]="slideOpts">
-    <ion-slide>
-      <ion-card color="primary" mode="ios">
-        <ion-card-header mode="ios">
-          <ion-card-title mode="ios">Solde UV</ion-card-title>
-        </ion-card-header>
-        <ion-card-content mode="ios">
-          <ion-label>
-            <h1>
-              <strong>
-                {{user.pocket}} FCFA
-              </strong>
-            </h1>
-          </ion-label>
-        </ion-card-content>
-      </ion-card>
-    </ion-slide>
+  <ion-toolbar class="horizontale" >
+    <ion-card mode="ios" class="card horizontale">
+      <ion-card-header class="horizontale">
+        <ion-row>
+          <ion-col>
+            <ion-card-subtitle>Mon solde UV:</ion-card-subtitle>
+          </ion-col>
+          <ion-col>
+            <ion-card-subtitle>Mon solde seddo:</ion-card-subtitle>
+          </ion-col>
+        </ion-row>
+      </ion-card-header>
+      <ion-card-content class="horizontale">
+        <ion-row>
+          <ion-col>
+            <ion-label color="primary">
+              <b>{{user.pocket}}</b> F CFA
+            </ion-label>
+          </ion-col>
 
-    <ion-slide>
-      <ion-card color="primary" mode="ios">
-        <ion-card-header mode="ios">
-          <ion-card-title mode="ios">Seddo</ion-card-title>
-        </ion-card-header>
-        <ion-card-content mode="ios">
-          <ion-label>
-            <h1>
-              <strong>
-                {{user.seddo}} FCFA
-              </strong>
-            </h1>
-          </ion-label>
-        </ion-card-content>
-      </ion-card>
-    </ion-slide>
-  </ion-slides>
+          <ion-col>
+            <ion-label color="primary">
+              <b>{{user.seddo}}</b> F CFA
+            </ion-label>
+          </ion-col>
+        </ion-row>
+      </ion-card-content>
+    </ion-card>
+  </ion-toolbar>
+</ion-header>
 
-  <ion-grid>
-    <ion-row>
-      <ion-col></ion-col>
-      <ion-col></ion-col>
-      <ion-col></ion-col>
-    </ion-row>
-  </ion-grid>
 
+
+<ion-content class="content">
+  <ion-card class="pos">
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-item button lines="none">
+            <ion-thumbnail>
+              <ion-img [src]="src1"></ion-img>
+            </ion-thumbnail>
+          </ion-item>
+
+        </ion-col>
+        <ion-col>
+          <ion-item button lines="none">
+            <ion-thumbnail>
+              <ion-img [src]="src1"></ion-img>
+            </ion-thumbnail>
+          </ion-item>
+
+        </ion-col>
+        <ion-col>
+          <ion-item button lines="none">
+            <ion-thumbnail>
+              <ion-img [src]="src1"></ion-img>
+            </ion-thumbnail>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
 
   <ion-list class="my-list" mode="ios" lines="inset">
     <ion-item *ngFor="let function of functions" button (click)="presentModal(function.present)" mode="ios">

@@ -22,6 +22,8 @@ export class AccountPage implements OnInit {
     slidesPerView: 1.2,
   };
 
+  src1 = "assets/images/rapido.png"
+
   functions = [
     {label: "Commande UV", present: "UV", src: "assets/icon/UV.svg"},
     {label: "Commande Seddo", present: "seddo", src: "assets/icon/seddo.svg"},
